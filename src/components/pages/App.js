@@ -1,9 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+import Main from "./main";
+import ToursListApi from "./tours/toursListApi";
 
 function App() {
   return (
-    <div className="App">
-      <div>요소(이동할수있게끔)</div>
-    </div>
+    <Routes>
+      <Route index element={<Main />}/>
+      <Route path="/toursMain" element={<ToursListApi />}></Route>
+    </Routes>
   );
 }
 
