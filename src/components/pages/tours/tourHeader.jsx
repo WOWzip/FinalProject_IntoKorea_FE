@@ -37,10 +37,11 @@ const TotalCheckStrong = styled.strong`
 
 
 
-const TourCategory = () =>  {
+const TourHeader = () =>  {
 
     return (
         <>
+        <h1>하잉</h1>
             <CategoryContainer>
                 <CategoryH2>
                     전체
@@ -55,4 +56,4 @@ const TourCategory = () =>  {
     )
 }
 
-export default TourCategory;
+export default TourHeader;
