@@ -1,0 +1,59 @@
+
+.ask-container {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+  }
+  
+  .ask-title {
+    color: #333;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-input{
+    width: 100%;
+    height: 40px;
+  }
+
+
+  .form-textarea{
+    width: 100%;
+    height: 300px;
+  }
+  
+  .form-button {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    width:50%;
+    height: 50px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    line-height: 50px; 
+  }
+  
+  .form-button:hover {
+    background-color: #45a049;
+  }
+
+
+  .must {
+    color: red;
+    font-size: 15px;
+  }

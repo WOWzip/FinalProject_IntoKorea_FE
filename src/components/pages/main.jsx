@@ -6,6 +6,7 @@ const Main = () => {
         <>
             <h2>메인페이지입니다</h2>
             <Link to="toursMain">여행지 보기 </Link>
+            <Link to="Mypage">마이페이지</Link>
         </>
     )
 }
