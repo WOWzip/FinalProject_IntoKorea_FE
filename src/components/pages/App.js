@@ -5,9 +5,10 @@ import LoginForm from './user/LoginForm';
 import JoinForm from './user/JoinForm';
 import KakaoRedirectPage from './user/KakaoRedirectPage';
 import Main from "./main";
-import ToursListApi from "./tours/toursListApi";
-import CheckData from "./tours/zcheckAndTest/checkData";
-import TourDetailPageApi from "./tourDetailPage/tourDetailPageApi";
+import React from "react";
+import IndexNavbar from "./fragnents/Navbars/IndexNavbar";
+import IndexHeader from "./fragnents/Headers/IndexHeader";
+import DemoFooter from "./fragnents/Footers/DemoFooter";
 import Logout from './user/Logout';
 import FindPwd from './user/FindPwd';
 import FindId from './user/FindId';
@@ -16,10 +17,25 @@ import CheckPwd from './user/CheckPwd';
 import ModifyNickName from './user/ModifyNickName';
 
 function App() {
+  document.documentElement.classList.remove("nav-open");
+  React.useEffect(() => {
+    document.body.classList.add("index");
+    return function cleanup() {
+      document.body.classList.remove("index");
+    };
+  });
+  
 
 
 
   return (
+
+    <>
+    <IndexNavbar />
+    <IndexHeader />
+    <Main/>
+    <DemoFooter />
+    </>
     <div className="App">
 
         <Routes>
