@@ -1,17 +1,26 @@
-import { Route, Routes } from "react-router-dom";
 import Main from "./main";
-import ToursListApi from "./tours/toursListApi";
-import CheckData from "./tours/zcheckAndTest/checkData";
-import TourDetailPageApi from "./tourDetailPage/tourDetailPageApi";
+import React from "react";
+import IndexNavbar from "./fragnents/Navbars/IndexNavbar";
+import IndexHeader from "./fragnents/Headers/IndexHeader";
+import DemoFooter from "./fragnents/Footers/DemoFooter";
 
 function App() {
+  document.documentElement.classList.remove("nav-open");
+  React.useEffect(() => {
+    document.body.classList.add("index");
+    return function cleanup() {
+      document.body.classList.remove("index");
+    };
+  });
+  
   return (
-    <Routes>
-      <Route index element={<Main />}/>
-      <Route path="/toursMain" element={<ToursListApi />}></Route>
-      <Route path="/checkData" element={<CheckData />}></Route>
-      <Route path="/tourDetail" element={<TourDetailPageApi/>}></Route>
-    </Routes>
+
+    <>
+    <IndexNavbar />
+    <IndexHeader />
+    <Main/>
+    <DemoFooter />
+    </>
   );
 }
 
