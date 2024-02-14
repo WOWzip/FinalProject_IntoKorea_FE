@@ -17,6 +17,8 @@ import React from "react";
 
 import CheckData from "./tours/zcheckAndTest/checkData";
 import TourDetailPageApi from "./tourDetailPage/tourDetailPageApi";
+import EditDiary from "./mypage/EditDiary";
+import DiaryDetail from "./mypage/DiaryDetail";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
       <Route path="/Traveldiary" element={<Traveldiary/>}/>
       <Route path="/EditQuestion" element={<EditQuestion/>}/>
       <Route path="/QnAdetail" element={<QnAdetail/>}/>
+      <Route path="/EditDiary" element={<EditDiary/>} />
+      <Route path="/DiaryDetail" element={<DiaryDetail/>} />
 
       <Route path="/toursMain" element={<ToursListApi />}></Route>
       <Route path="/checkData" element={<CheckData />}></Route>

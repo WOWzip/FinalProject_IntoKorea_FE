@@ -24,29 +24,69 @@ function Question() {
     setFile(e.target.files[0]);
   };
 
-  const handleSubmit = () => {
+  // const handleSubmit = () => {
+  //   const formData = new FormData();
+  //   formData.append("title", title);
+  //   formData.append("content", content);
+  //   formData.append("file", file);
+
+  //   axios.post("/mypage/submitQuestion", formData, {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log("Question submitted successfully:", response.data);
+  //       navigate("/QnA");
+  //     })
+  //     .catch((error) => console.error("Error submitting question:", error));
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault(); // 폼 제출 방지
+  
+  //   const formData = new FormData();
+  //   formData.append("title", title);
+  //   formData.append("content", content);
+  //   formData.append("file", file);
+  
+  //   axios.post("/mypage/submitQuestion", formData, {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log("Question submitted successfully:", response.data);
+  //       navigate("/QnA");
+  //     })
+  //     .catch((error) => console.error("Error submitting question:", error));
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("file", file);
-
-    axios.post("/mypage/submitQuestion", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        console.log("Question submitted successfully:", response.data);
-        navigate("/QnA");
-      })
-      .catch((error) => console.error("Error submitting question:", error));
+  
+    try {
+      const response = await axios.post("/mypage/submitQuestion", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("질문이 등록되었습니다.")
+      console.log("Question submitted successfully:", response.data);
+      navigate("/QnA");
+    } catch (error) {
+      console.error("Error submitting question:", error);
+    }
   };
-
   return (
     <>
       <h2 className="ask-title">질문 등록</h2>
       <div className="ask-container">
-        <form className="ask-form">
+        <form className="ask-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">제목 <span className="must">(필수)</span></label>
             <input
@@ -55,6 +95,7 @@ function Question() {
               id="title"
               value={title}
               onChange={handleTitleChange}
+              required
             />
           </div>
           <br />
@@ -65,6 +106,7 @@ function Question() {
               className="form-textarea"
               value={content}
               onChange={handleContentChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -75,7 +117,7 @@ function Question() {
               onChange={handleFileChange}
             />
           </div>
-          <button type="button" className="form-button" onClick={handleSubmit}>등록</button>
+          <button type="submit" className="form-button">등록</button>
         </form>
       </div>
     </>
