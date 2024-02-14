@@ -42,8 +42,6 @@ const Traveldiary = ({ selectedDate }) => {
           <label>제목</label>
           <input
             type="text"
-            placeholder="다이어리 제목"
-            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -51,15 +49,10 @@ const Traveldiary = ({ selectedDate }) => {
           <br />
           <label>내용</label>
           <textarea
-            placeholder="다이어리 내용"
-            id="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <br />
-          <button onClick={handleSave}>저장</button>
         </div>
-      ) : (
         <div>
           <h2>
             <label>제목</label>
@@ -77,5 +70,3 @@ const Traveldiary = ({ selectedDate }) => {
     </div>
   );
 };
-
-export default Traveldiary;
