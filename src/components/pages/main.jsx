@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 
 const Main = () => {
 
+    const email = sessionStorage.getItem("email");
+    const nickName = sessionStorage.getItem("nickName");
+
     return (
         <>
             <h2>메인페이지입니다</h2>
@@ -10,9 +13,63 @@ const Main = () => {
             <Link to="checkData">코드 확인</Link>
             <Link to="tourDetail">여행지 상세페이지</Link>
             <Link to="toursMain">여행지 보기 </Link><br/>
+            <Link to="toursMain">여행지 보기 </Link> <br/>
             <Link to="checkData">코드 확인</Link><br/>
             <Link to="tourDetail">여행지 상세페이지</Link><br/>
             <Link to="check">api 체크</Link>
+            <Link to="Map">여행 지도</Link>
+
+            {							
+                (email) ?
+                    <>
+                        {/* 회원 정보 */}
+                        <li className="nav-item">
+                            <span className="nav-link"> {nickName} 님 반갑습니다 <i className="fab fa-ello"></i> &nbsp; </span>
+                        </li>
+
+                        {/* 닉네임 변경 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/ModifyNickName"> 닉네임 변경 </Link>
+                        </li>
+
+                        {/* 비밀번호 변경 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/CheckPwd"> 비밀번호 변경 </Link>
+                        </li>
+
+                        {/* 로그아웃 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/Logout"><i className="fas fa-sign-out-alt"></i> 로그아웃</Link>
+                        </li>
+
+                    </>
+                    :
+                    <>
+                        {/* 로그인 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/LoginForm">로그인</Link>
+                        </li>
+
+                        {/* 회원가입 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/JoinForm">회원가입</Link>
+                        </li>
+
+
+                        {/* 아이디찾기 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/FindId">아이디 찾기</Link>
+                        </li>
+
+                        {/* 비밀번호찾기 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/FindPwd">비밀번호 찾기</Link>
+                        </li>
+
+                        
+                    </>
+            }
+            
         </>
     )
 }

@@ -28,6 +28,15 @@ import QnAdetail from 'components/pages/mypage/QnAdetail';
 import EditDiary from 'components/pages/mypage/EditDiary';
 import DiaryDetail from 'components/pages/mypage/DiaryDetail';
 import TourDetailPageApi from 'components/pages/tourDetailPage/tourDetailPageApi';
+import LoginForm from 'components/pages/user/LoginForm';
+import Logout from 'components/pages/user/Logout';
+import KakaoRedirectPage from 'components/pages/user/KakaoRedirectPage';
+import FindId from 'components/pages/user/FindId';
+import FindPwd from 'components/pages/user/FindPwd';
+import CheckPwd from 'components/pages/user/CheckPwd';
+import ModifyPwd from 'components/pages/user/ModifyPwd';
+import ModifyNickName from 'components/pages/user/ModifyNickName';
+import JoinForm from 'components/pages/user/JoinForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -57,6 +66,15 @@ root.render(
       <Route path="/toursMain" element={<ToursListApi />}></Route>
       <Route path="/checkData" element={<CheckData />}></Route>
       <Route path="/tourDetail" element={<TourDetailPageApi/>}></Route>
+      <Route path='/LoginForm' element={<LoginForm />}/>
+      <Route path='/JoinForm' element={<JoinForm />}/>
+      <Route path="/Logout" element={<Logout/>}/>
+      <Route path='/login/oauth2/code/kakao' element={<KakaoRedirectPage />}/>
+      <Route path='/FindId' element={<FindId/>}/>
+      <Route path='/FindPwd' element={<FindPwd/>}/>
+      <Route path='/CheckPwd' element={<CheckPwd/>}/>
+      <Route path='/ModifyPwd' element={<ModifyPwd/>}/>
+      <Route path='/ModifyNickName' element={<ModifyNickName/>}/>
     </Routes>
   </BrowserRouter>
 );

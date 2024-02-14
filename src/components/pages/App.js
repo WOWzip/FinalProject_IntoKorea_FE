@@ -5,6 +5,7 @@ import IndexNavbar from "./fragnents/Navbars/IndexNavbar";
 import IndexHeader from "./fragnents/Headers/IndexHeader";
 import DemoFooter from "./fragnents/Footers/DemoFooter";
 
+
 function App() {
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
@@ -14,6 +15,9 @@ function App() {
     };
   });
   
+
+
+
   return (
 
     <>
@@ -22,6 +26,7 @@ function App() {
     <Main/>
     <DemoFooter />
     </>
+
   );
 }
 
