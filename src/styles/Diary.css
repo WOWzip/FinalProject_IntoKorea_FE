@@ -1,0 +1,31 @@
+.Dtable {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.DiaryArea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.DiaryArea li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.DiaryArea li:last-child {
+  border-bottom: none;
+}
+
+.DiaryArea li span {
+  display: block;
+}
+
+.DiaryArea li button {
+  margin-left: 10px;
+}

@@ -1,0 +1,117 @@
+
+
+ul.form {
+    list-style: none;
+    padding: 0;
+    border-top: 2px black;
+    margin-left: 10%;
+    margin-top:10em;
+  }
+  
+  .textarea {
+    position: relative;
+    width: 1000px;
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+  .QAtitle {
+    margin-top:40px;
+    font-size: 2em;
+    margin-bottom: 50px;
+    display: block;
+  }
+  
+  .QAinfo {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .line {
+    color: #555;
+    margin-right: 20px;
+    font-size: 20px;
+  }
+
+  .separator {
+    border-right: 1px solid #ccc;
+    height: 15px; 
+    margin: 0 10px;
+  }
+  
+  .ans {
+    color: green;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+
+
+.editbutton {
+    color: white;
+    cursor: pointer;
+    border: none;
+    width: 80px; /* 수정 버튼의 너비 조절 */
+    height: 40px; /* 수정 버튼의 높이 조절 */
+    background-color: green;
+    position: absolute;
+    top: 50%; /* 텍스트 영역의 세로 중간에 위치 */
+    right: 10px; /* 텍스트 영역의 오른쪽에 위치 */
+    transform: translateY(150%); /* 수직 가운데 정렬 */
+  }
+  
+  .deletebutton {
+    color: white;
+    cursor: pointer;
+    border: none;
+    width: 80px; /* 삭제 버튼의 너비 조절 */
+    height: 40px; /* 삭제 버튼의 높이 조절 */
+    top: 50%; /* 텍스트 영역의 세로 중간에 위치 */
+    background-color:brown;
+    position: absolute;
+    right: 10px; /* 텍스트 영역의 오른쪽에 위치 */
+    transform: translateY(10%); /* 수직 가운데 정렬 */
+  }
+
+
+
+  .askbutton {
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: black;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+}
+.askbutton:hover{
+    background-color: grey;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.QAtitle {
+  font-size: 35px;
+  color : black;
+  text-decoration: none;
+}
+
+.QAtitle.active {
+  color : black;
+  text-decoration: none;
+}
+
+.pagination {
+  margin-top: 2em; 
+  margin-left: 15em;
+}
