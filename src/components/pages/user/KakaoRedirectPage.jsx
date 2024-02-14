@@ -13,17 +13,42 @@ const KakaoRedirectPage = () => {
             // 카카오로부터 받아온 code를 서버에 전달하여 카카오로 회원가입 & 로그인한다
             const response = await axios.get(`http://localhost:8081/oauth/login/kakao?code=${code}`);
             const data = response.data; // 응답 데이터
-            alert("로그인 성공: " + data) // 토큰 받기
+            const memberCheck = response.data.memberCheck;
+            const access_token = response.data.accessToken; // 토큰 받기
+            const email = response.data.email;
+            const nickName = response.data.nickName;
+            
             console.log(data)
 
-            // const ACCESS_TOKEN = response.data.access_token;
-            // console.log("access_token: ", ACCESS_TOKEN)
+            console.log("memberCheck: ", memberCheck);
+            console.log("access_token: ", access_token);
+            console.log("email: ", email);
+            console.log("nickName: ", nickName);
 
-            // sessionStorage.clear();
-            // sessionStorage.setItem("token", ACCESS_TOKEN); // 토큰 저장
+            //const ACCESS_TOKEN = response.data.access_token;
+
+            sessionStorage.clear();
+            if(email !== undefined){ 
+                if(memberCheck === 0){
+                    alert(nickName + "님, 성공적으로 회원가입 및 로그인 처리되었습니다.");
+                    sessionStorage.setItem("token", access_token); // 토큰 저장
+                    sessionStorage.setItem("email", email); // 이메일 저장
+                    sessionStorage.setItem("nickName", nickName); // 닉네임 저장
+                } else if(memberCheck === 2){
+                    alert(nickName + "님, 성공적으로 로그인 되었습니다");
+                    sessionStorage.setItem("token", access_token); // 토큰 저장
+                    sessionStorage.setItem("email", email); // 이메일 저장
+                    sessionStorage.setItem("nickName", nickName); // 닉네임 저장
+                } else {
+                    alert("이미 일반 및 다른 소셜방식으로 가입된 이메일 입니다.");
+                }
+                
+            } 
+
+            
 
             // window.location.replace("/"); 
-            navigate("/success"); // 로그인 성공 후 이동할 페이지
+            navigate("/"); // 로그인 성공 후 이동할 페이지
         } catch (error) {
             console.log("소셜 로그인 에러" ,error);
             window.alert("로그인에 실패하였습니다.")
@@ -35,7 +60,7 @@ const KakaoRedirectPage = () => {
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get('code');  // 카카오는 Redirect 시키면서 code를 쿼리 스트링으로 준다.
         if (code) {
-            alert("CODE = " + code)
+            console.log("CODE = " + code)
             handleOAuthKakao(code);
         }
     }, []);
