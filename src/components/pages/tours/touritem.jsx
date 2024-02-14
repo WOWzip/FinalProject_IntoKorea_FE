@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import TourDetailPageApi from "../tourDetailPage/tourDetailPageApi";
 
 const TourItemBlock = styled.div`
     display: flex;
@@ -38,23 +40,30 @@ const TourItemBlock = styled.div`
 
 
 const TourItem = ({data}) => {
-    const { firstimage, title, addr1, zipcode } = data;
+    const { firstimage, title, addr1, zipcode, contentid } = data;
+
 
     return (
         <>
             <TourItemBlock>
                 {firstimage ? (
                     <div className="firstimage">
-                        <img src={firstimage} alt="대표이미지"/>
+                        <Link to={`/tourDetailPage/${contentid}`}>
+                            <img src={firstimage} alt="대표이미지"/>
+                        </Link>
                     </div>
                 ) : (
                     <div className="firstimage" >
-                        <img src="/image/한국관광공사-로고-300x162.png" alt="빈 이미지" />
+                        <Link to={`/tourDetailPage/${contentid}`}>
+                            <img src="/image/한국관광공사-로고-300x162.png" alt="빈 이미지" />
+                        </Link>
                     </div>
                 )}
                 <div className="contents">
-                    <h2>{title}</h2>
-                    <p>{addr1} / {zipcode}</p>
+                    <Link to={`/tourDetailPage/${contentid}`}>
+                        <h2>{title}</h2>
+                        <p>{addr1} / {zipcode}</p>
+                    </Link>
                 </div>
             </TourItemBlock>
         </>

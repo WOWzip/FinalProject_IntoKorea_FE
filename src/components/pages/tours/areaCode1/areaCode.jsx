@@ -44,7 +44,6 @@ const AreaCode = ( {onClick} ) => {
 
     const handleChangeCategory = (sendCategory) => {
         // toursListApi로 값을 전달하는 로직 작성
-        console.log(sendCategory)
         onClick(sendCategory)
     }
 
