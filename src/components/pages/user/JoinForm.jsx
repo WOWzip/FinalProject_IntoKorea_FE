@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Timer from './Timer';
 
-const JoinForm5 = () => {
+const JoinForm = () => {
 
   // 기본 API URL
   const URL_API = "http://localhost:8081";
@@ -454,4 +454,4 @@ const handleEPwConfirm =  async () => {
 
 
 
-export default JoinForm5;
+export default JoinForm;
