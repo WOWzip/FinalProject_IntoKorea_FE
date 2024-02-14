@@ -84,7 +84,7 @@ const ToursListApi = () => {
                 console.log(`로딩 시간: ${loadingTime}ms`);
                 // setData(response)
                 setData(response.data.response.body.items.item);
-                console.log(response)
+                console.log(response.data.response.body.items.item)
 
 
                 setTotalData(response.data.response.body.totalCount);
@@ -101,6 +101,7 @@ const ToursListApi = () => {
         // 의존성 해달 줄에서만 의존성 배열을 무시하도록 지시
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[page, areaCode, categoryCode, contentsTypeId, detailAreaCode, showDetailAreaCode])
+    
 
     
     const handlePageChange = ( page ) =>{ setPage(page)}
@@ -112,7 +113,7 @@ const ToursListApi = () => {
 
         if(code !== ''){
             setShowDetailAreaCode(<DetailAreaCode code={code} onClick={handleFilterDetailArea}/>)
-            console.log("이거 나와야해 " ,detailAreaCode)
+            console.log("handleFilterArea 실행 " ,detailAreaCode)
         } else {
             setShowDetailAreaCode(null);
         }
@@ -130,6 +131,7 @@ const ToursListApi = () => {
     const handleFilterContentsTypeId = (code) => {
         setContentsTypeId(code)
     }
+
 
 
 
