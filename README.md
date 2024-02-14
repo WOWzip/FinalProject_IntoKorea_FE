@@ -13,3 +13,4 @@
 - npm install react-router-dom
 - npm install axios
 - npm install maven
+- npm install reactstrap
