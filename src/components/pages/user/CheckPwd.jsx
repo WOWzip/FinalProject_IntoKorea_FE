@@ -1,18 +1,31 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CheckPwd = () => {
 
+
+const CheckPwd = () => {
+  
   const email = sessionStorage.getItem("email");
+  const provider = sessionStorage.getItem("provider");
 
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
+  const params = new URLSearchParams(window.location.search);
+  let value = params.get("value");
+  
+
+  const handlePwdChange = useCallback( async (e) => {
+      setPassword(e.target.value);
+  },[])
+
+
   const handleCheckPwd = async (e) => {
     e.preventDefault();
-    
+  
+
     // 백앤드와 통신 
     var sendData = JSON.stringify({ // 백앤드의 객체명과 같아야함.
       "email": email,
@@ -32,12 +45,56 @@ const CheckPwd = () => {
       console.log(data);
       console.log(msg);
       console.log(check);
-      alert(msg);
 
       // 비밀번호 확인 성공시
-      if(check==="true"){
-		    navigate("/ModifyPwd");
+      if(check !=="0"){
+        
+        
+        if(value === "modify"){
+          // 비번 수정페이지
+
+          // 소셜 로그인이면 소셜계정에서 바꾸도록 하기
+          if(check ==="1"){
+            alert("소셜로 가입된 계정입니다. 해당 소셜에서 변경해주세요.");
+            navigate("/");
+          }
+
+          if(check ==="21"){
+            alert("비밀번호를 확인해주세요");
+          }
+
+          if(check ==="22"){
+            sessionStorage.setItem("checkPwd", true);
+            navigate("/ModifyPwd");
+          } 
+
+          
+          
+
+        } else if(value === "delete"){
+          // 계정 삭제페이지
+
+          if(check === "1"){
+            alert("소셜로 가입된 계정입니다. 탈퇴경로가 잘못되었습니다.")
+            navigate("/CheckCode");
+          }
+
+          if(check ==="21"){
+            alert("비밀번호를 확인해주세요");
+          }
+          
+          else {
+            sessionStorage.setItem("checkPwd", true);
+            navigate("/DeleteUser");
+          }
+          
+        }
+		    
       }
+      else {
+        alert("Email을 확인해주세요.")
+      }
+      
 
     } catch (error) {
       console.error('Error:', error);
@@ -60,7 +117,7 @@ const CheckPwd = () => {
             id="password"
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePwdChange}
             required
           />
 

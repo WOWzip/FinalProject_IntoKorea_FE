@@ -2,18 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-
-//const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_REST_API_KEY;
-//const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_REST_API_KEY;
 const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY;
 
-//const GOOGLE_REDIRECT_URL = process.env.REACT_APP_GOOGLE_REDIRECT_URL;
-//const NAVER_REDIRECT_URL = process.env.REACT_APP_NAVER_REDIRECT_URL;
 const KAKAO_REDIRECT_URL = process.env.REACT_APP_KAKAO_REDIRECT_URL;
-
-//const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URL}&scope=email profile`; 
-
-//const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URL}&scope=name email`;
 
 const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URL}&scope=profile_nickname account_email&prompt=login`; // &prompt=login: 사용자에게 로그인을 요청합니다.
 
@@ -49,17 +40,28 @@ const LoginForm = () => {
       const msg = response.data.msg;
       const nickName = response.data.nickName;
       const check = response.data.check;
+      const provider = response.data.provider;
       console.log(data);
       console.log(msg);
       console.log(nickName);
       console.log(check);
-      alert(msg);
+      console.log(provider);
 
-      // 로그인 성공시
-      if(check==="true"){
+
+      // 일반 로그인 성공시
+      if(check==="2"){
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("nickName" ,nickName);
+        sessionStorage.setItem("provider", provider);
+        sessionStorage.setItem("checkPwd", false);
+        alert(nickName + "님, 성공적으로 로그인 되었습니다");
 		    navigate("/");
+      } else if(check==="1") {
+        sessionStorage.setItem("provider", provider);
+        alert(msg);
+      }
+      else {
+        alert(msg);
       }
 
     } catch (error) {
@@ -70,12 +72,6 @@ const LoginForm = () => {
   };
 
   
-  // 네이버 로그인 페이지 
-  // const NaverLogin  = () => {
-  //   window.location.href = NAVER_AUTH_URL;
-  // };
-
-
   // 카카오 로그인 페이지 
   const KakaoLogin  = () => {
     window.location.href = KAKAO_AUTH_URL;
@@ -90,11 +86,8 @@ const LoginForm = () => {
         <input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}  required/> <br />
         <button type="submit">로그인</button>
       </form>
-      {/* <Link to={GOOGLE_AUTH_URL}>구글 로그인</Link> <br/> */}
-      {/* <Link to={NAVER_AUTH_URL}>네이버 로그인</Link> <br/> */}
-      {/* <button onClick={NaverLogin}>네이버 로그인</button><br/> */}
       <button onClick={KakaoLogin}>카카오 로그인</button><br/>
-      {/* <Link to={KAKAO_AUTH_URL}>카카오 로그인</Link> <br/> */}
+
       <Link to="/JoinForm">회원가입을 아직 하지 않으셨나요?</Link> <br/>
       <Link to="/FindId">아이디 찾기</Link> <br/>
       <Link to="/FindPwd">비밀번호 찾기</Link> <br/>

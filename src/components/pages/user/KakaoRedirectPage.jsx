@@ -17,6 +17,7 @@ const KakaoRedirectPage = () => {
             const access_token = response.data.accessToken; // 토큰 받기
             const email = response.data.email;
             const nickName = response.data.nickName;
+            const provider = response.data.provider;
             
             console.log(data)
 
@@ -24,21 +25,26 @@ const KakaoRedirectPage = () => {
             console.log("access_token: ", access_token);
             console.log("email: ", email);
             console.log("nickName: ", nickName);
+            console.log("provider: ", provider);
 
             //const ACCESS_TOKEN = response.data.access_token;
 
-            sessionStorage.clear();
+            //sessionStorage.clear();
             if(email !== undefined){ 
                 if(memberCheck === 0){
                     alert(nickName + "님, 성공적으로 회원가입 및 로그인 처리되었습니다.");
                     sessionStorage.setItem("token", access_token); // 토큰 저장
                     sessionStorage.setItem("email", email); // 이메일 저장
                     sessionStorage.setItem("nickName", nickName); // 닉네임 저장
+                    sessionStorage.setItem("provider", provider); // 계정 종류 저장
+
                 } else if(memberCheck === 2){
                     alert(nickName + "님, 성공적으로 로그인 되었습니다");
                     sessionStorage.setItem("token", access_token); // 토큰 저장
                     sessionStorage.setItem("email", email); // 이메일 저장
                     sessionStorage.setItem("nickName", nickName); // 닉네임 저장
+                    sessionStorage.setItem("provider", provider); // 계정 종류 저장
+
                 } else {
                     alert("이미 일반 및 다른 소셜방식으로 가입된 이메일 입니다.");
                 }

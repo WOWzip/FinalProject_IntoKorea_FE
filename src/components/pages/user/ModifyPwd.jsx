@@ -74,11 +74,6 @@ const ModifyPwd = () => {
   const handlePwdUpdate = async (e) => {
     e.preventDefault();
 
-    console.log('email:', email);
-    console.log('Password:', password);
-    console.log('Repassword:', repassword);
-
-    
     // 유효성 검사 성공 시
     if (isAllVaild) {
 
