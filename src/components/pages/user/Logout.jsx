@@ -3,14 +3,17 @@ import { useNavigate } from "react-router";
 
 function Logout() {
 
-    const email = sessionStorage.getItem("email");
+	const nickName = sessionStorage.getItem("nickName")
 
 	const navigate = useNavigate();
 	
 	const logout = () => {
         
-		alert(email + "님, 성공적으로 로그아웃 됐습니다 🔒");
-		sessionStorage.clear(); // 세션 값 지우기
+		if(nickName != null){
+			alert(nickName + "님, 성공적으로 로그아웃 됐습니다 🔒");
+			sessionStorage.clear(); // 세션 값 지우기
+		}
+		
 		navigate("/");
 
 	};

@@ -8,6 +8,8 @@ const Main = () => {
 
     const email = sessionStorage.getItem("email");
     const nickName = sessionStorage.getItem("nickName");
+    const provider = sessionStorage.getItem("provider");
+    console.log("provider::" , provider)
     const navigate = useNavigate();
 
 
@@ -19,11 +21,12 @@ const Main = () => {
     return (
         <>
             <h2>메인페이지입니다</h2>
+
+            <Link to="check">api 체크</Link><br/>
             <Link to="Mypage">마이페이지</Link><br/>
             <Link to="checkData">코드 확인</Link><br/>
             <Link to="tourDetail">여행지 상세페이지</Link><br/>
             <Link to="toursMain">여행지 보기 </Link> <br/>
-            <Link to="check">api 체크</Link><br/>
             <Link to="Map">여행 지도</Link><br/>
             <Link to="search">서치 확인</Link><br/>
             <SearchBar onSearch={handleSearch} /><br/>
@@ -45,7 +48,12 @@ const Main = () => {
 
                         {/* 비밀번호 변경 */}
                         <li className="nav-item">
-                            <Link className="nav-link" to="/CheckPwd"> 비밀번호 변경 </Link>
+                            <Link className="nav-link" to="/CheckPwd?value=modify"> 비밀번호 변경 </Link>
+                        </li>
+
+                        {/* 회원 탈퇴 */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to={(provider !== "none")? "/CheckCode":"/CheckPwd?value=delete"}> 회원탈퇴 </Link>
                         </li>
 
                         {/* 로그아웃 */}

@@ -108,6 +108,8 @@ const ModifyNickName = () => {
     console.log('nickName:', nickName);
 
     
+
+
     // 유효성 검사 성공 시
     if (isAllVaild) {
 
@@ -131,6 +133,7 @@ const ModifyNickName = () => {
 
       // 유효성 검사 실패 시
     } else {
+        alert("닉네임 변경 실패!! 닉네임을 다시 입력해주세요.")
       console.log('Form is invalid. Please fix the errors.');
     }
 
