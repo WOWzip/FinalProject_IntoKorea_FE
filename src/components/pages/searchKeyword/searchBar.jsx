@@ -1,3 +1,4 @@
+// SearchBar.jsx
 import React, { useState } from "react";
 
 const SearchBar = ({ onSearch }) => {
@@ -9,7 +10,6 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 검색어를 상위 컴포넌트로 전달
     onSearch(searchTerm);
   };
 
