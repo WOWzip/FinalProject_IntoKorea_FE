@@ -18,8 +18,10 @@ const RecommendPlace = () => {
 
             const fetchData = async() => {
                 const response = await CallAPI(link, param ,setLoading)
-                setData(response.data.response.body.items.item);
-                console.log(response)
+                if (response.data.response.body.items.item !== null) {
+                    setData(response.data.response.body.items.item);
+                    console.log(response)
+                }
     
             }
             fetchData();
