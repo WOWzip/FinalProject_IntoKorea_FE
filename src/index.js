@@ -6,22 +6,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 import App from './components/pages/App';
-import CheckData from 'components/pages/tours/zcheckAndTest/checkData';
 import ConnectPage from 'components/pages/tourDetailPage/connectPage';
-import CheckCallAPI from 'components/pages/tours/zcheckAndTest/checkCallAPI';
 
 //style
 import "bootstrap/scss/bootstrap.scss";
 import "assets/scss/paper-kit.scss?v=1.3.0";
 import "assets/demo/demo.css?v=1.3.0";
 import ToursList from 'components/pages/tours/toursList';
-import Main from 'components/pages/main';
-import ToursListApi from 'components/pages/tours/toursListApi';
 import MyPage from 'components/pages/mypage/MyPage';
 import QnA from 'components/pages/mypage/QnA';
 import Question from 'components/pages/mypage/Question';
 import History from 'components/pages/mypage/History';
-import Keep from 'components/pages/mypage/Keep';
 import TravelDiary from 'components/pages/mypage/TravelDiary';
 import EditQuestion from 'components/pages/mypage/EditQuestion';
 import QnAdetail from 'components/pages/mypage/QnAdetail';
@@ -52,9 +47,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}/>
       <Route path="/toursMain" element={<ToursList />} />
-      <Route path="/checkData" element={<CheckData />} />
       <Route path="/tourDetailPage/:contentid" element={<ConnectPage />} />
-      <Route path="/check" element={<CheckCallAPI />} />
       <Route path="/search" element={<SearchKeyword1 />} />
       <Route path="/festival" element={<SearchFestival1/> } />
 
