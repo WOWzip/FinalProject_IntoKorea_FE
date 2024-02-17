@@ -1,5 +1,5 @@
+import MyPageSidebar from "./ui/MyPageSidebar";
 import axios from "axios";
-import MyPageSidebar from "../../MyPageSidebar";
 import React from "react";
 import styled from "styled-components";
 const Container = styled.div`

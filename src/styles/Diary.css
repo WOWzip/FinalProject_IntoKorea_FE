@@ -29,3 +29,64 @@
 .DiaryArea li button {
   margin-left: 10px;
 }
+
+.dtitle {
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.Dtable {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.DiaryArea {
+  width: 150%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: none;
+}
+
+.DiaryArea li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.DiaryArea li:last-child {
+  border-bottom: none;
+}
+
+.DiaryArea li span {
+  display: block;
+}
+
+.DiaryArea li button {
+  margin-left: 10px;
+  background-color: #337ab7; /* 변경: 버튼 배경색 추가 */
+  color: white; /* 변경: 버튼 글자색 변경 */
+  border: none;
+  padding: 8px 12px; /* 변경: 버튼 패딩 조정 */
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.DiaryArea li button:hover {
+  background-color: #23527c; /* 변경: 버튼 호버 시 배경색 변경 */
+}
+
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.DiaryArea {
+  width: 80%; /* 변경: 테이블의 너비 조정 */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: none;
+}

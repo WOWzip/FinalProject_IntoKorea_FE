@@ -9,6 +9,8 @@ import '../../../styles/qna.css';
 import Textinput from "./Textinput";
 
 function QnAdetail() {
+  const nickName = sessionStorage.getItem("nickName");
+  const email = sessionStorage.getItem("email"); // 이메일 추가
   const location = useLocation();
   const keyword = getSeq(location);
   const [question, setQuestion] = useState({
@@ -52,7 +54,9 @@ function QnAdetail() {
   const submitComment = () => {
     axios.post("/mypage/comments/add", {
       ask: { seq: question.seq },
-      content: comment
+      content: comment,
+      nickName: nickName, // 닉네임 추가
+      email: email // 이메일 추가
     })
     .then(res => {
       console.log("댓글 저장 성공");
@@ -61,6 +65,8 @@ function QnAdetail() {
     })
     .catch(error => console.error("댓글 저장 실패:", error));
   };
+  
+
 
   //댓글 삭제
   const deleteComment = (commentSeq) => {
@@ -71,78 +77,6 @@ function QnAdetail() {
         })
         .catch(error => console.error("댓글 삭제 실패:", error));
   };
-
-
-  // 그냥 안댐 에러조차 안뜸
-  // // 파일 다운
-  // const downloadFile = () => {
-  //   if (question.fileName) {
-
-  //     const fileURL = `/files/${question.fileName}`;
-      
-  //     axios({
-  //       url: fileURL,
-  //       method: 'GET',
-  //       responseType: 'blob',
-  //     }).then((response) => {
-  //       const url = window.URL.createObjectURL(new Blob([response.data]));
-
-  //       const link = document.createElement('a');
-  //       link.href = url;
-  //       link.setAttribute('download', question.fileName); // 파일 이름 사용
-  //       document.body.appendChild(link);
-  //       link.click();
-
-  //       document.body.removeChild(link);
-  //     }).catch(error => console.error("파일 다운로드 실패:", error)); // 에러 처리
-  //   }
-  // };
-
-  // // 경로 에러 c: 는안댐
-  // // 파일 다운로드 함수
-  // const downloadFile = async (event) => {
-  //   event.preventDefault();
-  //   const downloadUrl = `../../../${question.fileName}`;
-    
-  //   try {
-  //     const result = await axios.get(downloadUrl, { responseType: 'blob' });
-  //     const blob = new Blob([result.data], { type: result.headers['content-type'] });
-
-  //     const link = document.createElement('a');
-  //     link.href = window.URL.createObjectURL(blob);
-
-  //     // 파일 이름과 확장자 설정
-  //     link.setAttribute("download", `${question.fileName}`);
-
-  //     link.click();
-  //   } catch (error) {
-  //     console.error("파일 다운로드 실패:", error);
-  //   }
-  // };
-
-// 그냥 다운만됨
-// // 파일 다운로드 함수
-// const downloadFile = async () => {
-//   const downloadUrl = `/mypage/download/${question.seq}`;
-
-//   try {
-//     const result = await axios.get(downloadUrl, { responseType: 'blob' });
-//     const blob = new Blob([result.data], { type: result.headers['content-type'] });
-
-//     const url = window.URL.createObjectURL(blob);
-//     const link = document.createElement('a');
-//     link.href = url;
-
-//     // 파일 이름과 확장자 설정
-//     link.setAttribute("download", `${question.fileName}`);
-
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-//   } catch (error) {
-//     console.error("파일 다운로드 실패:", error);
-//   }
-// };
 
 // 파일 다운로드 함수
 const downloadFile = async () => {
@@ -178,7 +112,7 @@ return (
       <p className="content">{question.content}</p>
       {question.fileName !== null && question.fileName !== 'null' && <button onClick={downloadFile}>첨부파일 다운</button>}
       <hr/>
-      <span className="sub">작성자</span> 
+      <span className="sub">{question.nickName} 님</span> 
       <span className="separator"></span>
       <span className="sub">{question.AskDate}</span>
     </div>
@@ -189,13 +123,14 @@ return (
     </div>
     <div>
       <h2>댓글</h2>
+      <br/>
       <div>
         {comments.map((c, index) => (
           <div className="comment" key={index}>
             <strong>{c.content}</strong>
             <br/>
             <br/>
-            <span>관리자</span>
+            <span>{c.nickName}</span>
             <span className="separator"></span>
             <span>{c.commentDate}</span>
             <span className="separator"></span>
@@ -217,5 +152,3 @@ function getSeq(location) {
 }
 
 export default QnAdetail;
-
-
