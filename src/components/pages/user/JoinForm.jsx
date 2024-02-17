@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Timer from './Timer';
+import KakaoLogin from './KakaoLogin';
 
 const JoinForm = () => {
 
@@ -235,7 +236,10 @@ const handleEPwSend = async () => {
     "email": email
   });
 
+  setIsTimer(false);
+
   if(isValidEmail && checkEmail){
+    
     try {
       const response = await axios.post("http://localhost:8081/emails/sendCode", sendData, {
             headers: {'Content-Type': 'application/json'}
@@ -260,18 +264,19 @@ const handleEPwSend = async () => {
 
 
 
-// 인증번호 유효성 체크
+// 인증번호 입력
 const handleEPwChange = useCallback( (e) => {
   const currEPw = e.target.value;
   setEPw(currEPw);
 }, []);
 
+// 인증번호 유효성 체크
 const handleEPwConfirm =  async () => {
 
   // 백앤드와 통신
   try {
     const response = await axios.get("http://localhost:8081/emails/verifyCode", {
-      params: {code: ePw}});
+      params: {code: ePw, userEmail: email}});
 
     const verifyCode =  response.data;
     console.log("인증코드 유효성:", verifyCode);
@@ -334,6 +339,7 @@ const handleEPwConfirm =  async () => {
 
       // 유효성 검사 실패 시
     } else {
+      alert("유효한 값을 입력해주세요")
       console.log('Form is invalid. Please fix the errors.');
     }
 
@@ -360,7 +366,7 @@ const handleEPwConfirm =  async () => {
                     <Timer/>
                   ) : null}
             <button type="button" onClick={handleEPwConfirm}  className={isValidEPw ? 'disabledBtn' : 'activeBtn'} disabled={isValidEPw&&true}>인증번호 확인</button>
-            <div className={isValidEmail ? 'success' : 'error'}>{ePwMsg}</div>
+            <div className={isValidEPw ? 'success' : 'error'}>{ePwMsg}</div>
           </div>
           
           <div>
@@ -381,7 +387,10 @@ const handleEPwConfirm =  async () => {
             <span className={isValidNickName && checkNickName ? 'success' : 'error'}>{nicknameMsg}</span>
           </div>
           
-          <button type="submit" disabled={!isAllVaild}>회원가입</button>
+          <button type="submit">회원가입</button>
+
+          <br/>
+          <KakaoLogin/>
 
         </form>
       </div>
@@ -438,6 +447,7 @@ const handleEPwConfirm =  async () => {
             pointer-events: none;
             cursor: default;
           }
+
 
           @media (max-width: 768px) {
             /* Apply styles for screens with a maximum width of 768px */

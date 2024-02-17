@@ -14,3 +14,7 @@
 - npm install axios
 - npm install maven
 - npm install reactstrap
+- npm install react-datepicker
+- npm install react-redux
+- npm install react-kakao-maps-sdk
+- npm install react-modal
