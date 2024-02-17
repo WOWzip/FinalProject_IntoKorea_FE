@@ -27,7 +27,6 @@ const Main = () => {
             <Link to="checkData">코드 확인</Link><br/>
             <Link to="tourDetail">여행지 상세페이지</Link><br/>
             <Link to="toursMain">여행지 보기 </Link> <br/>
-            <Link to="check">api 체크</Link><br/>
             <Link to="Map">여행 지도</Link><br/>
             <Link to="search">서치 확인</Link><br/>
             <SearchBar onSearch={handleSearch} /><br/>
