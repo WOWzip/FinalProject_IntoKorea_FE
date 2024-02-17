@@ -67,11 +67,10 @@ function IndexNavbar() {
         <div className="navbar-translate">
           <NavbarBrand
             data-placement="bottom"
-            href="/index"
-            target="_blank"
-            title="Coded by Creative Tim"
+            href="/"
+            title="INTO KOREA"
           >
-            INTO KOREA
+              INTO KOREA
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
@@ -94,37 +93,52 @@ function IndexNavbar() {
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://twitter.com/CreativeTim?ref=creativetim"
-                target="_blank"
-                title="Follow us on Twitter"
+                href="/toursMain"
+                // target="_blank" >> 새로운 창에서 열림
+                title="여행지"
               >
-                <i className="fa fa-twitter" />
-                <p className="d-lg-none">Twitter</p>
+              <p>
+              여행지
+              </p>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.facebook.com/CreativeTim?ref=creativetim"
-                target="_blank"
-                title="Like us on Facebook"
+                href="/"
+                title="api 지도"
               >
-                <i className="fa fa-facebook-square" />
-                <p className="d-lg-none">Facebook</p>
+                api 지도
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-                target="_blank"
-                title="Follow us on Instagram"
+                href="/Mypage"
+                title="마이페이지"
               >
-                <i className="fa fa-instagram" />
-                <p className="d-lg-none">Instagram</p>
+                마이페이지
               </NavLink>
             </NavItem>
             <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="/LoginForm"
+                title="로그인"
+              >
+                로그인
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="/Logout"
+                title="로그아웃"
+              >
+                로그아웃
+              </NavLink>
+            </NavItem>
+            {/* <NavItem>
               <NavLink
                 data-placement="bottom"
                 href="https://www.github.com/CreativeTimOfficial/paper-kit-react?ref=creativetim"
@@ -134,7 +148,7 @@ function IndexNavbar() {
                 <i className="fa fa-github" />
                 <p className="d-lg-none">GitHub</p>
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink
                 href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-index-navbar"
@@ -147,10 +161,10 @@ function IndexNavbar() {
               <Button
                 className="btn-round"
                 color="danger"
-                href="https://www.creative-tim.com/product/paper-kit-pro-react?ref=pkr-index-navbar"
+                href="/JoinForm"
                 target="_blank"
               >
-                <i className="nc-icon nc-spaceship"></i> Upgrade to Pro
+                <i className="nc-icon nc-spaceship"></i> 회원가입
               </Button>
             </NavItem>
           </Nav>

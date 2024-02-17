@@ -2,3 +2,8 @@ input, button, textarea, select {
     font-size: 1em;
     font-family: NotoSansKR,NotoSansJP,"돋움",Dotum,AppleGothic,Sans-serif;
 }
+
+.bodyContainer {
+    padding-top: 6.8em;
+    /* background-color: red; */
+}

@@ -299,6 +299,7 @@ const DetailAreaInfo = (code) => {
     ]
 
 
+    
     if(code === "1") return seoul
     if(code === "2") return incheon
     if(code === "3") return daejeon

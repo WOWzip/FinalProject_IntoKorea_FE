@@ -3,12 +3,15 @@ import CategoryTagButton from "../../../ui/categoryTagButton";
 
 const ContentsTypeIdItemBlock = styled.div`
     border: 1px solid gray;
+    margin: 1em;
     background-color: #e2e2e2;
 `;
 
 
 const ContentsTypeId = ( {onClick} ) => {
     const category = [
+
+        {code: '', name: '전체'},
         {code: '12', name: '관광지'},
         {code: '14', name: '문화시설'},
         {code: '15', name: '행사/공연/축제'},

@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
-import TourItem from "./touritem";
 import styled from "styled-components";
-import Pagination from "react-js-pagination"
-import TourHeader from "./tourHeader";
-import AreaCode from "./areaCode1/areaCode";
-import CategoryCode from "./categoryCode1/categoryCode";
-import ContentsTypeId from "./contentsTypeId/contentsTypeId";
-import DetailAreaCode from "./areaCode1/detailAreaCode";
-import CallAPI from "components/ui/callAPI";
-import SearchBar from "../searchKeyword/searchBar";
- 
+import AreaCode from "../areaCode1/areaCode";
+import DetailAreaCode from "../areaCode1/detailAreaCode";
+import CategoryCode from "../categoryCode1/categoryCode";
+import ContentsTypeId from "../contentsTypeId/contentsTypeId";
+import TourHeader from "../tourHeader";
+import { useEffect, useState } from "react";
+import TourItem from "../touritem";
+import Pagination from "react-js-pagination";
 
 
 
@@ -53,14 +49,7 @@ const PaginationBox = styled.div`
     ul.pagination li a.active { color: blue; }
 `
 
-
-const ToursListApi = ({keyword}) => {
-    const [loading, setLoading] = useState(false);
-
-    const [datas, setData] = useState(null);
-    const [page, setPage] = useState(1);
-    const [totalData, setTotalData] = useState(1);
-    const itemsCountPerPage = 10;
+const TourListDisplay = ({ datas, totalData, page, onPageChange }) => {
 
     const [areaCode , setAreaCode] = useState("") ;
     const [categoryCode, setCategoryCode] = useState("");
@@ -72,78 +61,22 @@ const ToursListApi = ({keyword}) => {
     const [filter , setFilter] = useState("")
     const [ areaName , setAreaName] = useState("");
 
-    const [saveKeyWord, setSaveKeyWord] = useState(keyword);
-
-    // 태그 클릭시 요청값 저장
-    const key = 'wGgAMNctzAVjo7O4ZlwZPcCNHPr9t8IPlm4lYhfG1RbY79FR2pL%2BnAhWAyP0%2FObPwgvONXIi1Ke1UTRujCO%2Fnw%3D%3D'
-    console.log(keyword)
-
-    useEffect(() => {
-        setSaveKeyWord(keyword)
-        setFilter(keyword)
-    }, [keyword])
-
-
-
-    // api 호출 
-    useEffect(() => {
-        console.log("값을 보자 ",saveKeyWord)
-        if(saveKeyWord && saveKeyWord !== ""){
-            console.log("if문실행")
-            const link = "searchKeyword1";
-            const param = `MobileOS=ETC&MobileApp=AppTest&_type=json&keyword=${saveKeyWord}&numOfRows=${itemsCountPerPage}&pageNo=${page}`
-
-            const fetchSearchData = async() => {
-                const response = await CallAPI(link, param ,setLoading)
-                setData(response.data.response.body.items.item);
-                setTotalData(response.data.response.body.totalCount)
-                console.log(response)
-    
-            }
-    
-            fetchSearchData();
-            
-        } else {
-            console.log("else문실행")
-            const fetchData = async () => {
-                setLoading(true);
-                try {
-                    const response = await axios.get(
-                        // 	지역기반관광정보조회 - areaBasedList1
-                        `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=${itemsCountPerPage}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&ServiceKey=${key}&listYN=Y&arrange=Q&contentTypeId=${contentsTypeId}&areaCode=${areaCode}&sigunguCode=${detailAreaCode}&cat1=${categoryCode}&cat2=&cat3=`
-                        );
-                    setData(response.data.response.body.items.item);
-                    setTotalData(response.data.response.body.totalCount);
-                    setLoading(false);
-        
-                } catch (error) {
-                    console.log(error);
-                    setLoading(false);
-                }
-            }
-            fetchData();
-        }
-    
-    },[page, areaCode, categoryCode, contentsTypeId, detailAreaCode, showDetailAreaCode, saveKeyWord ,keyword])
-
-    console.log("data1 : " , datas)
+    const itemsCountPerPage = 10;
 
     useEffect(() => {
         console.log("areaName: ", areaName);
     }, [areaName]);
-
     
-    const handlePageChange = ( page ) =>{ setPage(page)}
+    const handlePageChange = ( pageNumber ) =>{ onPageChange(pageNumber)}
 
 
     
     const handleFilterArea = (data) => {
-        setSaveKeyWord("");
-
-        setDetailAreaCode("");
+        
         setAreaCode(data.code);
         setAreaName(data.name);
 
+        setDetailAreaCode("");
         setFilter(data.name)
         console.log("체크: ",data)
 
@@ -166,7 +99,6 @@ const ToursListApi = ({keyword}) => {
 
     
     const handleFilterDetailArea = (data) => {
-        setSaveKeyWord("");
         setDetailAreaCode(data.code)
         const fn = `${data.area} ${data.name}`
         console.log("fn : " ,fn)
@@ -174,33 +106,15 @@ const ToursListApi = ({keyword}) => {
     }
 
     const handleFilterCategory = (data) => {
-        setSaveKeyWord("");
         setCategoryCode(data.code)
         setFilter(data.name)
     }
 
     const handleFilterContentsTypeId = (data) => {
-        setSaveKeyWord("");
         setContentsTypeId(data.code)
         setFilter(data.name)
     }
 
-    const handleSearch = (term) => {
-        setSaveKeyWord(term);
-        setFilter(term)
-    };
-
-
-
-    // 대기 중일때
-    if(loading){
-        return <>대기중 ... </>;
-    }
-
-    // 아직 datas 값이 설정되지 않았을 때
-    if(!datas){
-        return <div>값이 없습니다.</div>;
-    }
 
     return (
         <>  
@@ -215,9 +129,6 @@ const ToursListApi = ({keyword}) => {
                 {showDetailAreaCode}
                 <CategoryCode onClick={handleFilterCategory}/>
                 <ContentsTypeId onClick={handleFilterContentsTypeId} />
-
-                {/* 검색 */}
-                <SearchBar onSearch={handleSearch}/>
 
                 {/* 리스트 내용  */}
                 <TourHeader totalCount={totalData} a={filter} />
@@ -244,8 +155,8 @@ const ToursListApi = ({keyword}) => {
         </>
     )
 
+
 }
 
 
-
-export default ToursListApi;
+export default TourListDisplay;
