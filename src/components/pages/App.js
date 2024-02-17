@@ -21,10 +21,8 @@ function App() {
   return (
 
     <>
-    <IndexNavbar />
     <IndexHeader />
     <Main/>
-    <DemoFooter />
     </>
 
   );

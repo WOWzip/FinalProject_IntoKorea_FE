@@ -3,6 +3,11 @@
 // tourCategory.jsx
 
 import styled from "styled-components";
+import AreaCode from "./areaCode1/areaCode";
+import CategoryCode from "./categoryCode1/categoryCode";
+import ContentsTypeId from "./contentsTypeId/contentsTypeId";
+import DetailAreaCode from "./areaCode1/detailAreaCode";
+import { useEffect, useState } from "react";
 
 const CategoryContainer = styled.div`
     position: relative;
@@ -36,20 +41,33 @@ const TotalCheckStrong = styled.strong`
 `
 
 
+const TourHeader = ( {totalCount , a}) =>  {
 
-const TourHeader = () =>  {
+    const ab = a;
+    
+    // const [t, setT] = useState([]);
+    
+    // useEffect(() => {
+    //     if (a !== null){
+            
+    //         setT(prevT => prevT + (a.name + " "))
+    //         // setT(prevT => [...prevT , a.name] )
+    //     }
+    // }, [a])
+    
+    
+    // console.log("여기111111111111 ", t)
 
     return (
         <>
-        <h1>하잉</h1>
             <CategoryContainer>
                 <CategoryH2>
-                    전체
+                    {ab}
                 </CategoryH2>
             </CategoryContainer>
             <TotalCheckBox>
                 <TotalCheckStrong>
-                    총 100건
+                    총 {totalCount}건
                 </TotalCheckStrong>
             </TotalCheckBox>
         </>

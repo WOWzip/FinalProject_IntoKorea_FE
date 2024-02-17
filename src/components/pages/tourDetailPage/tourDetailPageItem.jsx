@@ -76,7 +76,7 @@ const TourDetailPageItem = ( {data} ) => {
 
             {/* 여기에 detailImage1 API 값을 따온 이미지가 들어간 컴포넌트 삽입 */}
             <div className="imageContainer">
-                <DetailImage1 contentId={contentid} />
+                <DetailImage1 contentId={contentid} firstimage={firstimage} />
                 <img src={firstimage} alt="대표이미지"/><br/>
                 <img src={firstimage2} alt="대표이미지2"/><br/>
                 저작권 - {cpyrhtDivCd}
