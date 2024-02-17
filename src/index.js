@@ -39,10 +39,13 @@ import ModifyNickName from 'components/pages/user/ModifyNickName';
 import JoinForm from 'components/pages/user/JoinForm';
 import DeleteUser from 'components/pages/user/DeleteUser';
 import CheckCode from 'components/pages/user/CheckCode';
-
+import BookMark from 'components/pages/mypage/BookMark';
+import IndexNavbar from 'components/pages/fragnents/Navbars/IndexNavbar';
+import DemoFooter from 'components/pages/fragnents/Footers/DemoFooter';
+import SearchKeyword1 from 'components/pages/searchKeyword/searchKeyword1';
+import SearchFestival1 from 'components/pages/tours/searchFestival1/searchFestival1';
 
 const email = sessionStorage.getItem("email");
-
 const checkPwd = sessionStorage.getItem("checkPwd");
 
 
@@ -52,31 +55,32 @@ console.log("checkPwd 상태 : " , checkPwd)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
-  <BrowserRouter>
+  <BrowserRouter basename='/'>
+    <IndexNavbar />
+    <div className='bodyContainer'>
     <Routes>
-      <Route index element={<App />}/>
-      <Route path="/toursMain" element={<ToursList />}></Route>
-      <Route path="/checkData" element={<CheckData />}></Route>
-      <Route path="/tourDetailPage/:contentid" element={<ConnectPage />}></Route>
-      <Route path="/check" element={<CheckCallAPI />}></Route>
+      <Route path="/" element={<App />}/>
+      <Route path="/toursMain" element={<ToursList />} />
+      <Route path="/checkData" element={<CheckData />} />
+      <Route path="/tourDetailPage/:contentid" element={<ConnectPage />} />
+      <Route path="/check" element={<CheckCallAPI />} />
+      <Route path="/search" element={<SearchKeyword1 />} />
+      <Route path="/festival" element={<SearchFestival1/> } />
 
-      <Route index element={<Main />}/>
-
-      <Route path="/toursMain" element={<ToursListApi />}/>
+      {/* 마이페이지 */}
       <Route path="/Mypage" element={<MyPage/>} />
       <Route path="/QnA" element={<QnA />} />
       <Route path="/Question" element={<Question />} />
-      <Route path="/History" element={<History />} />
-      <Route path="/Keep" element={<Keep />} />
+      <Route path="/History" element={<History />} />   
+      <Route path="/BookMark" element={<BookMark />} />
       <Route path="/Traveldiary" element={<TravelDiary/>}/>
       <Route path="/EditQuestion" element={<EditQuestion/>}/>
       <Route path="/QnAdetail" element={<QnAdetail/>}/>
       <Route path="/EditDiary" element={<EditDiary/>} />
       <Route path="/DiaryDetail" element={<DiaryDetail/>} />
+      
 
-      <Route path="/toursMain" element={<ToursListApi />}></Route>
-      <Route path="/checkData" element={<CheckData />}></Route>
-      <Route path="/tourDetail" element={<TourDetailPageApi/>}></Route>
+      <Route path="/tourDetail" element={<TourDetailPageApi/>} />
       <Route path='/LoginForm' element={<LoginForm />}/>
       <Route path='/JoinForm' element={<JoinForm />}/>
       {/* <Route path="/Logout" element={<Logout/>}/> */}
@@ -138,5 +142,8 @@ root.render(
 
 
     </Routes>
+    <DemoFooter />
+    </div>
+
   </BrowserRouter>
 );

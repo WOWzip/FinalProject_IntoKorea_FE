@@ -87,6 +87,7 @@ const LoginForm = () => {
         <button type="submit">로그인</button>
       </form>
       <button onClick={KakaoLogin}>카카오 로그인</button><br/>
+
       <Link to="/JoinForm">회원가입을 아직 하지 않으셨나요?</Link> <br/>
       <Link to="/FindId">아이디 찾기</Link> <br/>
       <Link to="/FindPwd">비밀번호 찾기</Link> <br/>

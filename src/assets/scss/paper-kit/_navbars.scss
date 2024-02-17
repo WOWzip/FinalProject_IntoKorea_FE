@@ -15,6 +15,7 @@
     padding: 0;
     background: $white-color;
     box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid #333333;
 
     .navbar-brand {
         font-weight: $font-weight-bold;
@@ -49,6 +50,8 @@
             text-transform: uppercase;
             font-weight: 600;
             color: $default-color;
+            border-bottom: 1px solid #333333;
+            
 
             p {
               margin: 0px 0px;
@@ -137,12 +140,13 @@
        @include center-item();
     }
     &.navbar-transparent {
-      background: transparent !important;
+      // background: transparent !important; // transparent 투명, !important css 우선순위 강화
+      background: white;
       padding-top: 25px;
       box-shadow: none;
 
       .navbar-brand {
-        color: $white-color;
+        color: #333333;
       }
 
       .navbar-nav {
@@ -213,12 +217,12 @@
 
     .navbar-nav{
         .nav-item .nav-link:not(.btn){
-            color: $white-color;
+            color: #333333;
             border-color: $white-color;
         }
         .active .nav-link
         .active .nav-link:hover,
-        .active .nav-link:focus,
+        .active .nav-link:focus,s
         .nav-item .nav-link:hover,
         .nav-item .nav-link:focus{
             background-color: transparent;

@@ -14,6 +14,7 @@ import CategoryTagButton from "../../../ui/categoryTagButton"
 
 const AreaCodeBlock = styled.div`
     border: 1px solid gray;
+    margin: 1em;
     background-color: #e2e2e2;
 `;
 
@@ -44,6 +45,7 @@ const AreaCode = ( {onClick} ) => {
 
     const handleChangeCategory = (sendCategory) => {
         // toursListApi로 값을 전달하는 로직 작성
+        console.log("흐음? " , sendCategory)
         onClick(sendCategory)
     }
 
