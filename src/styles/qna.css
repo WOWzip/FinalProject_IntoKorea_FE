@@ -4,8 +4,8 @@ ul.form {
     list-style: none;
     padding: 0;
     border-top: 2px black;
-    margin-left: 10%;
-    margin-top:10em;
+    margin-left: -30%;
+    margin-top:1em;
   }
   
   .textarea {
@@ -43,8 +43,13 @@ ul.form {
     margin: 0 10px;
   }
   
-  .ans {
+  /* .ans {
     color: green;
+    font-weight: bold;
+    font-size: 20px;
+  } */
+  
+  .ans {
     font-weight: bold;
     font-size: 20px;
   }

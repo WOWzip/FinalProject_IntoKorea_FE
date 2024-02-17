@@ -1,17 +1,24 @@
 import '../../../styles/MyPage.css';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
+
 
 const MyPage = () => {
 
+    const email = sessionStorage.getItem("email");
+    const nickName = sessionStorage.getItem("nickName");
+
     return (
         <>
-
-
             <h1>M Y P A G E</h1>
             <div className="container">
                 <div className="info-container box">
-                    <p>XXX 님</p>
+                <p className='nickName'>{nickName} 님</p>
+                <br/>
+                <br/>
+                <br/>
+                <p className='email'>{email}</p>
                 </div>
                 <div className="keep-container box">
                     <form>

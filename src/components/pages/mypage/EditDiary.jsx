@@ -1,9 +1,11 @@
+
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../../../styles/TravelDiary.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../../styles/TravelDiary.css";
 
 function EditDiary() {
     const location = useLocation();
@@ -16,8 +18,12 @@ function EditDiary() {
     const [rating, setRating] = useState("");
     const [theme, setTheme] = useState("");
     const [visitDate, setVisitDate] = useState(null);
+    const [finishDate, setFinishDate] = useState(null); // 추가: finishDate 상태 추가
     const [image, setImage] = useState(null); 
+    const email = sessionStorage.getItem("email"); // 현재 로그인된 사용자의 이메일
 
+
+ 
     useEffect(() => {
         axios.get(`/mypage/getDiary/${seq}`)
             .then((response) => {
@@ -28,6 +34,7 @@ function EditDiary() {
                 setRating(diaryData.rating);
                 setTheme(diaryData.theme);
                 setVisitDate(new Date(diaryData.visitDate));
+                setFinishDate(new Date(diaryData.finishDate)); // 추가: finishDate 설정
             })
             .catch((error) => console.error("불러오기 실패 :", error))
     }, [seq]);
@@ -52,12 +59,45 @@ function EditDiary() {
         setVisitDate(date);
     };
 
+    const handleFinishDateChange = (date) => { // 추가: finishDate 변경 핸들러
+        setFinishDate(date);
+    };
+
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
     };
 
     const handleThemeChange = (e) => {
         setTheme(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("seq", seq);
+        formData.append("dtitle", title);
+        formData.append("dcontent", content);
+        formData.append("location", locationA);
+        formData.append("rating", rating);
+        formData.append("visitDate", visitDate.toISOString());
+        formData.append("finishDate", finishDate.toISOString());
+        formData.append("image", image); 
+        formData.append("theme", theme); 
+        formData.append("email", email); // 현재 로그인된 사용자의 이메일 추가
+
+        axios.post("/mypage/updateDiary", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        .then((response) => {
+            console.log(visitDate);
+            console.log(finishDate);
+            alert("다이어리가 수정되었습니다.");
+            console.log("다이어리 수정 완료 :", response.data);
+            navigate("/History");
+        })
+        .catch((error) => console.error("수정 실패 :", error));
     };
 
     const themeImages = {
@@ -70,40 +110,6 @@ function EditDiary() {
         '공연' : "/image/stage.png",
         '여가' : "/image/culture.png"
       };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     axios.put("/mypage/updateDiary", { seq, dtitle: title, dcontent: content, location: locationA, rating, theme })
-    //         .then((response) => {
-    //             console.log("다이어리 수정 완료 :", response.data);
-    //             navigate("/History");
-    //         })
-    //         .catch((error) => console.error("수정 실패 :", error));
-    // };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("seq", seq);
-        formData.append("dtitle", title);
-        formData.append("dcontent", content);
-        formData.append("location", locationA);
-        formData.append("rating", rating);
-        formData.append("visitDate", visitDate.toISOString());
-        formData.append("image", image); // 이미지 추가
-        formData.append("theme", theme); // 테마 추가
-    
-        axios.put("/mypage/updateDiary", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        })
-        .then((response) => {
-            console.log("다이어리 수정 완료 :", response.data);
-            navigate("/History");
-        })
-        .catch((error) => console.error("수정 실패 :", error));
-    };
 
     return (
         <div className="form-container">
@@ -147,11 +153,19 @@ function EditDiary() {
                 <div className="form-group">
                     <label>방문일자</label>
                     <DatePicker
-                        dateFormat="yyyy-MM-dd"
+                        dateFormat="yyyy/MM/dd"
                         shouldCloseOnSelect 
                         maxDate={new Date()}
                         selected={visitDate}
                         onChange={handleVisitDateChange}
+                    /> ~ 
+                    <DatePicker
+                        dateFormat="yyyy/MM/dd"
+                        shouldCloseOnSelect 
+                        minDate={visitDate || new Date()}
+                        maxDate={new Date()}
+                        selected={finishDate}
+                        onChange={handleFinishDateChange}
                     />
                 </div>
                 <div className="form-group">
@@ -175,4 +189,3 @@ function EditDiary() {
 }
 
 export default EditDiary;
-

@@ -1,3 +1,10 @@
+.nickName {
+    font-size: 40px;
+}
+
+.email {
+    font-size: 15px;
+}
 
 .info-container.box {
     width: 350px;
@@ -13,7 +20,7 @@
     height: 500px;
     margin: 10;
     padding: 20px;
-    border: 1px solid skyblue;
+    border: 1px solid white;
     background-color: white;
     background-image: url(../components/images/keep.jpg);
     background-size: auto;     
@@ -25,7 +32,7 @@
     height: 500px;
     margin: 10;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     background-color: #80e645;
     background-image: url(../components/images/korea.jpg);
     background-size: cover; 
@@ -37,7 +44,7 @@
     height: 500px;
     margin: 0;
     padding: 20px;
-    border: 1px solid skyblue;
+    border: 1px solid white;
     background-color: white;  
     background-image: url(../components/images/qa2.jpg);
     background-size: 100%;     
