@@ -1,23 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
+import SearchBar from "./searchKeyword/searchBar";
+import { useState } from "react";
+import RecommendPlace from "./recommendPlace/recommendPlace";
+
 
 const Main = () => {
 
     const email = sessionStorage.getItem("email");
     const nickName = sessionStorage.getItem("nickName");
+    const navigate = useNavigate();
+
+
+    const handleSearch = (term) => {
+        // 검색어와 함께 페이지 이동
+        navigate("/toursMain", { state: {searchTerm: term}});
+    };
 
     return (
         <>
             <h2>메인페이지입니다</h2>
-            <Link to="toursMain">여행지 보기 </Link>
-            <Link to="Mypage">마이페이지</Link>
-            <Link to="checkData">코드 확인</Link>
-            <Link to="tourDetail">여행지 상세페이지</Link>
-            <Link to="toursMain">여행지 보기 </Link><br/>
-            <Link to="toursMain">여행지 보기 </Link> <br/>
+            <Link to="Mypage">마이페이지</Link><br/>
             <Link to="checkData">코드 확인</Link><br/>
             <Link to="tourDetail">여행지 상세페이지</Link><br/>
-            <Link to="check">api 체크</Link>
-            <Link to="Map">여행 지도</Link>
+            <Link to="toursMain">여행지 보기 </Link> <br/>
+            <Link to="check">api 체크</Link><br/>
+            <Link to="Map">여행 지도</Link><br/>
+            <Link to="search">서치 확인</Link><br/>
+            <SearchBar onSearch={handleSearch} /><br/>
+            <Link to="festival">행사 축제..</Link><br/>
+            <RecommendPlace />
 
             {							
                 (email) ?

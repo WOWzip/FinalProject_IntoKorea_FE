@@ -36,7 +36,7 @@ const MyPage = () => {
                         <br/>
                         <br/>
                         <button className="keep button">
-                            <Link to="/keep" className="link">즐겨찾기</Link>
+                            <Link to="/BookMark" className="link">즐겨찾기</Link>
                         </button>
                     </form>
                 </div>

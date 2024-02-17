@@ -9,7 +9,6 @@ import CategoryCode from "./categoryCode1/categoryCode";
 import ContentsTypeId from "./contentsTypeId/contentsTypeId";
 import DetailAreaCode from "./areaCode1/detailAreaCode";
 import CallAPI from "components/ui/callAPI";
-import SearchBar from "../searchKeyword/searchBar";
  
 
 
@@ -56,6 +55,7 @@ const PaginationBox = styled.div`
 
 const ToursListApi = ({keyword}) => {
     const [loading, setLoading] = useState(false);
+    const startTime = new Date();
 
     const [datas, setData] = useState(null);
     const [page, setPage] = useState(1);
@@ -72,26 +72,25 @@ const ToursListApi = ({keyword}) => {
     const [filter , setFilter] = useState("")
     const [ areaName , setAreaName] = useState("");
 
-    const [saveKeyWord, setSaveKeyWord] = useState(keyword);
+    const [saveKeyword, setSaveKeyword] = useState(keyword)
 
     // 태그 클릭시 요청값 저장
     const key = 'wGgAMNctzAVjo7O4ZlwZPcCNHPr9t8IPlm4lYhfG1RbY79FR2pL%2BnAhWAyP0%2FObPwgvONXIi1Ke1UTRujCO%2Fnw%3D%3D'
     console.log(keyword)
+    console.log("여기 확인!!!!", saveKeyword)
 
     useEffect(() => {
-        setSaveKeyWord(keyword)
-        setFilter(keyword)
-    }, [keyword])
+        console.log(1111)
+        setSaveKeyword(keyword);
+      }, [keyword]);
 
 
-
-    // api 호출 
     useEffect(() => {
-        console.log("값을 보자 ",saveKeyWord)
-        if(saveKeyWord && saveKeyWord !== ""){
+        console.log("값을 보자 ",saveKeyword)
+        if(saveKeyword && saveKeyword !== ""){
             console.log("if문실행")
             const link = "searchKeyword1";
-            const param = `MobileOS=ETC&MobileApp=AppTest&_type=json&keyword=${saveKeyWord}&numOfRows=${itemsCountPerPage}&pageNo=${page}`
+            const param = `MobileOS=ETC&MobileApp=AppTest&_type=json&keyword=${saveKeyword}&numOfRows=10&pageNo=${page}`
 
             const fetchSearchData = async() => {
                 const response = await CallAPI(link, param ,setLoading)
@@ -110,7 +109,7 @@ const ToursListApi = ({keyword}) => {
                 try {
                     const response = await axios.get(
                         // 	지역기반관광정보조회 - areaBasedList1
-                        `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=${itemsCountPerPage}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&ServiceKey=${key}&listYN=Y&arrange=Q&contentTypeId=${contentsTypeId}&areaCode=${areaCode}&sigunguCode=${detailAreaCode}&cat1=${categoryCode}&cat2=&cat3=`
+                        `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=${itemsCountPerPage}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&ServiceKey=${key}&listYN=Y&arrange=O&contentTypeId=${contentsTypeId}&areaCode=${areaCode}&sigunguCode=${detailAreaCode}&cat1=${categoryCode}&cat2=&cat3=`
                         );
                     setData(response.data.response.body.items.item);
                     setTotalData(response.data.response.body.totalCount);
@@ -124,26 +123,27 @@ const ToursListApi = ({keyword}) => {
             fetchData();
         }
     
-    },[page, areaCode, categoryCode, contentsTypeId, detailAreaCode, showDetailAreaCode, saveKeyWord ,keyword])
+        // eslint-plugin-react-hooks에서는 의존성 배열에 모든 외부 변수를 포함하도록 요구함
+        // 의존성 해달 줄에서만 의존성 배열을 무시하도록 지시
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[page, areaCode, categoryCode, contentsTypeId, detailAreaCode, showDetailAreaCode, saveKeyword])
 
-    console.log("data1 : " , datas)
 
     useEffect(() => {
         console.log("areaName: ", areaName);
     }, [areaName]);
-
     
     const handlePageChange = ( page ) =>{ setPage(page)}
 
 
     
     const handleFilterArea = (data) => {
-        setSaveKeyWord("");
-
-        setDetailAreaCode("");
+        
         setAreaCode(data.code);
         setAreaName(data.name);
+        setSaveKeyword("");
 
+        setDetailAreaCode("");
         setFilter(data.name)
         console.log("체크: ",data)
 
@@ -166,29 +166,24 @@ const ToursListApi = ({keyword}) => {
 
     
     const handleFilterDetailArea = (data) => {
-        setSaveKeyWord("");
         setDetailAreaCode(data.code)
         const fn = `${data.area} ${data.name}`
         console.log("fn : " ,fn)
         setFilter(fn)
+        setSaveKeyword("");
     }
 
     const handleFilterCategory = (data) => {
-        setSaveKeyWord("");
         setCategoryCode(data.code)
         setFilter(data.name)
+        setSaveKeyword("");
     }
 
     const handleFilterContentsTypeId = (data) => {
-        setSaveKeyWord("");
         setContentsTypeId(data.code)
         setFilter(data.name)
+        setSaveKeyword("");
     }
-
-    const handleSearch = (term) => {
-        setSaveKeyWord(term);
-        setFilter(term)
-    };
 
 
 
@@ -197,9 +192,9 @@ const ToursListApi = ({keyword}) => {
         return <>대기중 ... </>;
     }
 
-    // 아직 datas 값이 설정되지 않았을 때
+    // 아직 articles 값이 설정되지 않았을 때
     if(!datas){
-        return <div>값이 없습니다.</div>;
+        return null;
     }
 
     return (
@@ -215,9 +210,6 @@ const ToursListApi = ({keyword}) => {
                 {showDetailAreaCode}
                 <CategoryCode onClick={handleFilterCategory}/>
                 <ContentsTypeId onClick={handleFilterContentsTypeId} />
-
-                {/* 검색 */}
-                <SearchBar onSearch={handleSearch}/>
 
                 {/* 리스트 내용  */}
                 <TourHeader totalCount={totalData} a={filter} />

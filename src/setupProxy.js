@@ -11,4 +11,11 @@ module.exports = function (app) {
             changeOrigin: true,
         })
     );
+
+    app.use(
+        createProxyMiddleware('/main', {
+            target: 'https://korean.visitkorea.or.kr/',
+            changeOrigin: true,
+        })
+    );
 };
