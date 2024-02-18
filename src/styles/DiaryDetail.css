@@ -1,35 +1,16 @@
-.diary-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .travelareaDetail{
+    width: 100px; 
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid black; 
+    margin-bottom: 20px;
   }
-  
-  .diary-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-  
-  .diary-content {
-    margin-top: 20px;
-  }
-  
-  .diary-detail {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .diary-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .diary-rating {
-    font-weight: bold;
-    color: #007bff;
-  }
+
+  .separatorwidth1 {
+    border-top: 3px solid black; /* 구분선 윗 부분 */
+    width: 100%; /* 가로 폭을 100%로 설정 */
+    margin: 10px 0; /* 상단 및 하단 여백 설정 */
+}

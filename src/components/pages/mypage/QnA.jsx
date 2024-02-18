@@ -53,31 +53,8 @@ function QnA() {
   const [totalItems, setTotalItems] = useState(0);
   const itemsPerPage = 3; // 페이지당 보여줄 아이템 수
 
-  // useEffect(() => {
-  //   if (email === "manager@ma.com") {
-  //     axios.get("/mypage/getAllAsks")
-  //       .then((response) => {
-  //         console.log("Server Response:", response.data);
-  //         const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
-  //         setQuestions(sortedQuestions);
-  //         setTotalItems(sortedQuestions.length);
-  //       })
-  //       .catch((error) => console.error("Error fetching data:", error));
-  //   } else {
-  //     axios.get("/mypage/getAllAsks")
-  //       .then((response) => {
-  //         console.log("Server Response:", response.data);
-  //         const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
-  //         const filteredQuestions = sortedQuestions.filter(question => question.email === email);
-  //         setQuestions(filteredQuestions);
-  //         setTotalItems(filteredQuestions.length);
-  //       })
-  //       .catch((error) => console.error("Error fetching data:", error));
-  //   }
-  // }, [email]);
-
   useEffect(() => {
-   
+    if (email === "manager@ma.com") {
       axios.get("/mypage/getAllAsks")
         .then((response) => {
           console.log("Server Response:", response.data);
@@ -86,16 +63,33 @@ function QnA() {
           setTotalItems(sortedQuestions.length);
         })
         .catch((error) => console.error("Error fetching data:", error));
-    
+    } else {
+      axios.get("/mypage/getAllAsks")
+        .then((response) => {
+          console.log("Server Response:", response.data);
+          const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+          const filteredQuestions = sortedQuestions.filter(question => question.email === email);
+          setQuestions(filteredQuestions);
+          setTotalItems(filteredQuestions.length);
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
   }, [email]);
 
+
   const handleDelete = (seq) => {
-    axios.delete(`/mypage/deleteAsk/${seq}`)
-      .then(() => {
-        setQuestions((prevQuestions) => prevQuestions.filter((question) => question.seq !== seq));
-        setTotalItems(totalItems - 1);
-      })
-      .catch((error) => console.error("삭제 에러:", error));
+    // 사용자에게 삭제 여부를 묻는 경고창 표시
+    const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
+  
+    // 사용자가 확인을 선택한 경우에만 삭제 요청 보내기
+    if (confirmDelete) {
+      axios.delete(`/mypage/deleteAsk/${seq}`)
+        .then(() => {
+          setQuestions((prevQuestions) => prevQuestions.filter((question) => question.seq !== seq));
+          setTotalItems(totalItems - 1);
+        })
+        .catch((error) => console.error("삭제 에러:", error));
+    }
   };
 
   const handleEdit = (seq) => {
@@ -130,7 +124,7 @@ function QnA() {
     <PageContainer>
       <MyPageSidebar />
       <MainContent>
-        <h1 className="qa">Q&A</h1>
+        <img className="qnaimage" src="/image/qna.png" alt="qna" />
         {questions.length === 0 ? (
           <div>
             <p>질문을 등록해주세요!</p>

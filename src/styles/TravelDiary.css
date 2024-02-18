@@ -4,6 +4,14 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
+  }
+
+  
+
+  .SEvisitdate {
+    font-size: 20px;
+    font-weight: bold;
   }
   
   .form-container h2 {
@@ -55,3 +63,145 @@
     margin-top: 10px;
   }
   
+  .diaryform1 {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid black; /* 표의 선을 두꺼운 선으로 변경 */
+  border-radius: 5px;
+}
+
+.diaryTitleLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.diaryTitle {
+  width: calc(100% - 20px); /* 제목 입력 칸의 너비를 조절하여 아랫선의 길이를 조절 */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid black; 
+  margin-bottom: 20px;
+  border-top: 0.5px solid gray;
+  margin-top: 10px;
+}
+
+.diaryTitle:focus {
+  outline: none; /* 클릭시 테두리 제거 */
+}
+
+.diaryContentLabel {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.travelarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid black;
+  margin-bottom: 20px;
+  border-top: 0.5px solid gray;
+  margin-top: 10px;
+}
+
+.travelarea:focus {
+  outline: none; /* 클릭시 테두리 제거 */
+}
+
+.diarydateLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.diarylocationLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.diaryupLabel{
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.diaryimageLabel{
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.diarythemeLabel{
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.datearea {
+  width: calc(100% - 20px); /* 제목 입력 칸의 너비를 조절하여 아랫선의 길이를 조절 */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid black; 
+  margin-bottom: 20px;
+}
+
+.diarylocation {
+  width: calc(100% - 20px); /* 제목 입력 칸의 너비를 조절하여 아랫선의 길이를 조절 */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid black; 
+  margin-bottom: 20px;
+}
+
+.diaryimagetext {
+  width: calc(100% - 20px); /* 제목 입력 칸의 너비를 조절하여 아랫선의 길이를 조절 */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid black; 
+  margin-bottom: 20px;
+}
+
+
+.datearea:focus {
+  outline: none;
+}
+
+.diarylocation:focus {
+  outline: none; 
+}
+
+.diaryimagetext:focus {
+  outline: none; 
+}
+
+.diarybutton {
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-left: 330px;
+}
+
+.diarybutton.button {
+  background-color: #4caf50;
+}

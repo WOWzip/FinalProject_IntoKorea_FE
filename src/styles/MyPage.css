@@ -82,17 +82,19 @@
     align-items: center; 
 }
 
-.keep.button {
+.keepbutton {
     background-color: #4caf50;
 }
-.history.button {
+.historybutton {
     background-color: #4caf50;
 }
-.qna.button {
+.qnabutton {
     background-color: #4caf50;
 }
 
-.button {
+.keepbutton,
+.historybutton,
+.qnabutton {
     color: white;
     cursor: pointer;
     border: none;
@@ -104,7 +106,13 @@
     line-height: 50px;  
 }
 
-.button:hover{
+.keepbutton:hover{
+    background-color: #45a049;  
+}
+.historybutton:hover{
+    background-color: #45a049;  
+}
+.qnabutton:hover{
     background-color: #45a049;  
 }
 

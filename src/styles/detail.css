@@ -4,40 +4,43 @@
     width: 1000px;
     margin: 0 auto; /* 가운데 정렬 */
     padding: 20px; /* 내부 여백 */
-    background-color: #f9f9f9; /* 배경색 */
+    background-color: white; /* 배경색 */
     border: 1px solid #ddd; /* 테두리 */
     border-radius: 8px; /* 테두리 모서리 둥글게 */
 }
 
-.title {
-    font-size: 40px;
+.qadetailTitle {
+    font-weight: bold; /* 댓글 내용 굵게 */
+    font-size: 50px;
     margin-bottom: 20px; /* 제목과 내용 사이 간격 */
+    display: inline-block; /* 텍스트 길이에 따라 너비 조정 */
+    
 }
 
-.sub {
+.QAsub {
     font-size: 20px;
-    color: #666; /* 부가 정보 색상 */
+    color: #888;
 }
 
-.content {
-    font-size: 20px;
+.qadetailContent {
+    font-size: 30px;
     line-height: 1.5; /* 줄 간격 */
     margin-bottom: 20px; /* 내용 아래 여백 */
 }
 
-.button {
-    background-color: #007bff; /* 버튼 배경색 */
+.qnadetailB {
+    background-color: silver; /* 버튼 배경색 */
     color: #fff; /* 버튼 글자색 */
     border: none; /* 버튼 테두리 제거 */
     border-radius: 4px; /* 버튼 모서리 둥글게 */
-    padding: 10px 20px; /* 버튼 내부 여백 */
+    padding: 7px 15px; /* 버튼 내부 여백 */
     font-size: 16px;
     cursor: pointer; /* 포인터 모양으로 변경 */
     transition: background-color 0.3s; /* 배경색 변경 시 부드럽게 변화 */
 }
 
-.button:hover {
-    background-color: #0056b3; /* 호버 시 배경색 변경 */
+.qnadetailB:hover {
+    background-color: gray; /* 호버 시 배경색 변경 */
 }
 
 .comment {
@@ -48,13 +51,27 @@
 
 .comment strong {
     font-weight: bold; /* 댓글 내용 굵게 */
+    font-size: 25px;
 }
 
 .comment span {
-    font-size: 14px; /* 댓글 부가 정보 글자 크기 */
+    font-size: 20px; /* 댓글 부가 정보 글자 크기 */
     color: #888; /* 댓글 부가 정보 색상 */
 }
 
 .separator {
     margin: 0 5px; /* 구분자 간격 */
 }
+
+.separatorwidth {
+    border-top: 3px solid #ddd; /* 구분선 윗 부분 */
+    width: 100%; /* 가로 폭을 100%로 설정 */
+    margin: 10px 0; /* 상단 및 하단 여백 설정 */
+}
+
+.commentImage {
+    width: 60px;
+    height: auto; /* 세로 크기를 자동으로 조정하여 가로 세로 비율을 유지 */
+    margin-bottom: 10px;
+}
+

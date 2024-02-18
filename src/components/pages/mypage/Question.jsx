@@ -167,7 +167,9 @@ function Question() {
     <PageContainer>
     <MyPageSidebar />
     <MainContent>
-      <h2 className="ask-title">질문 등록</h2>
+    <img className="qnaimage" src="/image/qna.png" alt="qna" />
+    <br/>
+    <br/>
       <div className="ask-container">
         <form className="ask-form" onSubmit={handleSubmit}>
           <div className="form-group">
