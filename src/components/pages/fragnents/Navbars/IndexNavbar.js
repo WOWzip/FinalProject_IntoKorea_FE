@@ -23,7 +23,6 @@ import classnames from "classnames";
 import {
   Button,
   Collapse,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
@@ -31,14 +30,15 @@ import {
   Container,
 } from "reactstrap";
 
+import '../../../../styles/IndexNavbar.css';
+import { Link } from "react-router-dom";
+
+
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
-  const toggleNavbarCollapse = () => {
-    setNavbarCollapse(!navbarCollapse);
-    document.documentElement.classList.toggle("nav-open");
-  };
+  const email = sessionStorage.getItem("email");
 
   React.useEffect(() => {
     const updateNavbarColor = () => {
@@ -64,26 +64,11 @@ function IndexNavbar() {
   return (
     <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
-        <div className="navbar-translate">
-          <NavbarBrand
-            data-placement="bottom"
-            href="/"
-            title="INTO KOREA"
-          >
-              INTO KOREA
-          </NavbarBrand>
-          <button
-            aria-expanded={navbarCollapse}
-            className={classnames("navbar-toggler navbar-toggler", {
-              toggled: navbarCollapse,
-            })}
-            onClick={toggleNavbarCollapse}
-          >
-            <span className="navbar-toggler-bar bar1" />
-            <span className="navbar-toggler-bar bar2" />
-            <span className="navbar-toggler-bar bar3" />
-          </button>
-        </div>
+
+        <Link to="/">
+          <img className="logo" src="/image/logo1.png"/>
+        </Link>
+
         <Collapse
           className="justify-content-end"
           navbar
@@ -97,76 +82,75 @@ function IndexNavbar() {
                 // target="_blank" >> 새로운 창에서 열림
                 title="여행지"
               >
-              <p>
+              <p style={{fontSize: "15px"}}>
               여행지
               </p>
               </NavLink>
             </NavItem>
+
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="/"
-                title="api 지도"
+                href="/festival"
+                title="행사/축제"
               >
-                api 지도
+              <p style={{fontSize: "15px"}}>
+              행사/축제
+              </p>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="/Mypage"
-                title="마이페이지"
-              >
-                마이페이지
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="/LoginForm"
-                title="로그인"
-              >
-                로그인
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="/Logout"
-                title="로그아웃"
-              >
-                로그아웃
-              </NavLink>
-            </NavItem>
-            {/* <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="https://www.github.com/CreativeTimOfficial/paper-kit-react?ref=creativetim"
-                target="_blank"
-                title="Star on GitHub"
-              >
-                <i className="fa fa-github" />
-                <p className="d-lg-none">GitHub</p>
-              </NavLink>
-            </NavItem> */}
-            <NavItem>
-              <NavLink
-                href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-index-navbar"
-                target="_blank"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Documentation
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <Button
-                className="btn-round"
-                color="danger"
-                href="/JoinForm"
-                target="_blank"
-              >
-                <i className="nc-icon nc-spaceship"></i> 회원가입
-              </Button>
-            </NavItem>
+
+            {
+              (email) ?
+              <>
+                <NavItem>
+                  <Button
+                    className="btn-round"
+                    color="success"
+                    href="/Mypage"
+                  >
+                    <i className="nc-icon nc-single-02" />
+                    Mypage
+                  </Button>
+                </NavItem>
+
+                <NavItem>
+                  <Button
+                    className="btn-round"
+                    color="danger"
+                    href="/Logout"
+                  >
+                  <i className="nc-icon nc-spaceship"></i>
+                    로그아웃
+                  </Button>
+                </NavItem>
+              </>
+              :
+
+              <>
+                <NavItem>
+                  <Button
+                    className="btn-round"
+                    color="info"
+                    href="/LoginForm"
+                  >
+                    <i className="nc-icon nc-spaceship"></i>
+                    로그인
+                  </Button>
+                </NavItem>
+                <NavItem>
+                  <Button
+                    className="btn-round"
+                    color="danger"
+                    href="/JoinForm"
+                  >
+                    <i className="nc-icon nc-spaceship"></i> 회원가입
+                  </Button>
+                </NavItem>
+              </>
+
+            }
+
           </Nav>
         </Collapse>
       </Container>

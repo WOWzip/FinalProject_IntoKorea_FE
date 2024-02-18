@@ -49,7 +49,7 @@ const LoginForm = () => {
 
 
       // 일반 로그인 성공시
-      if(check==="2"){
+      if(check==="22"){
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("nickName" ,nickName);
         sessionStorage.setItem("provider", provider);
@@ -78,20 +78,61 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>로그인 페이지</h1>
-      <hr/>
-      <form onSubmit={handleLogin}>
-        <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}  required/> <br />
-        <input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}  required/> <br />
-        <button type="submit">로그인</button>
-      </form>
-      <button onClick={KakaoLogin}>카카오 로그인</button><br/>
+    <>
+      <div>
+        <h1>로그인 페이지</h1>
+        <hr/>
+        <form onSubmit={handleLogin}>
+          <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}  required/> <br />
+          <input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}  required/> <br />
+          <button className='submitBtn' type="submit">로그인</button>
+        </form>
+        <button onClick={KakaoLogin}>카카오 로그인</button><br/>
 
-      <Link to="/JoinForm">회원가입을 아직 하지 않으셨나요?</Link> <br/>
-      <Link to="/FindId">아이디 찾기</Link> <br/>
-      <Link to="/FindPwd">비밀번호 찾기</Link> <br/>
-    </div>
+        <Link to="/JoinForm">회원가입을 아직 하지 않으셨나요?</Link> <br/>
+        <Link to="/FindId">아이디 찾기</Link> <br/>
+        <Link to="/FindPwd">비밀번호 찾기</Link> <br/>
+      </div>
+      
+      {/* 스타일 정의 */}
+      <style jsx="true">{`
+      form {
+        max-width: 300px;
+        margin: auto;
+        padding: 20px; /* Add padding to improve spacing on smaller screens */
+        border: 1px solid #000;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      .submitBtn {
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        background-color: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .submitBtn:hover {
+        background-color: #818181;
+      }
+
+      @media (max-width: 768px) {
+        /* Apply styles for screens with a maximum width of 768px */
+        form {
+          max-width: 100%;
+        }
+      }
+    `}</style>
+    
+    </>
+    
   );
 };
 
