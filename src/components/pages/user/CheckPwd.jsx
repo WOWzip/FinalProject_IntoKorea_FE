@@ -49,7 +49,6 @@ const CheckPwd = () => {
       // 비밀번호 확인 성공시
       if(check !=="0"){
         
-        
         if(value === "modify"){
           // 비번 수정페이지
 
@@ -68,21 +67,17 @@ const CheckPwd = () => {
             navigate("/ModifyPwd");
           } 
 
-          
-          
 
         } else if(value === "delete"){
           // 계정 삭제페이지
 
           if(check === "1"){
-            alert("소셜로 가입된 계정입니다. 탈퇴경로가 잘못되었습니다.")
+            alert("탈퇴경로가 잘못되었습니다. 소셜 계정 탈퇴 페이지로 이동합니다.")
             navigate("/CheckCode");
-          }
 
-          if(check ==="21"){
+          } else if(check ==="21"){
             alert("비밀번호를 확인해주세요");
           }
-          
           else {
             sessionStorage.setItem("checkPwd", true);
             navigate("/DeleteUser");
@@ -105,68 +100,89 @@ const CheckPwd = () => {
   return (
 
   <>
-    <div>
-      <h1>IntoKorea 비밀번호 확인</h1>
-      <h2>본인 확인을 위해 비밀번호를 입력해 주세요</h2>
-      <hr/>
-      
-      <form onSubmit={handleCheckPwd}>
-          <label htmlFor="password">비밀번호 :</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handlePwdChange}
-            required
-          />
+    <div className='checkPwd_div'>
 
-          <button type="submit">확인</button>
-          <button type="button" onClick={() => window.location.href = '/'}>취소</button>
-        </form>
+      <form className='checkPwd_form' onSubmit={handleCheckPwd}>
+        <p className='checkPwd_p'>IntoKorea 본인확인 </p>
+        <p className='checkPwd_p2'>본인 확인을 위해 비밀번호를 입력해 주세요.</p>
+        <input
+          className='checkPwd_input'
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          placeholder="비밀번호 입력" 
+          onChange={handlePwdChange}
+          required
+        />
+
+        <button className="submitBtn" type="submit">확인</button>
+        <button className="cancelBtn" type="button" onClick={() => window.location.href = '/'}>취소</button>
+      </form>
     </div>
 
 
     {/* 스타일 정의 */}
     <style jsx="true">{`
-        form {
-            max-width: 300px;
-            margin: auto;
-            padding: 20px; /* Add padding to improve spacing on smaller screens */
+
+        .checkPwd_div {
+          margin-top: 5%;
+          margin-bottom: 5%;
         }
 
-        div {
-            margin-bottom: 20px;
+        .checkPwd_form {
+          max-width: 350px;
+          margin: auto;
+          padding: 20px; /* Add padding to improve spacing on smaller screens */
+          border: 1px solid #000;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .checkPwd_p {
+          font-size: 30px;
+          margin-bottom: 20px;
+          text-align : center;
         }
 
-        input {
+        .checkPwd_p2 {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          text-align : center;
+        }
+
+        .checkPwd_input {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
         }
-
-        span {
-            color: red;
-            font-size: 12px;
+        
+        .submitBtn {
+          width: 100%;
+          background-color: #008000;
+          margin: 10px 0 10px 0 ;
+          padding: 8px;
+          color: white;
+          border: none;
+          cursor: pointer;
         }
 
-        button {
-            width:100%;
-            margin-top: 10px;
-            padding: 8px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .submitBtn:hover {
+          background-color: #8fbc8f;
         }
 
-        button:hover {
-            background-color: #45a049;
+
+
+        .cancelBtn {
+          width: 100%;
+          background-color: #b22222;
+          padding: 8px;
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+
+
+        .cancelBtn:hover {
+          background-color: #bc8f8f;
         }
 
         @media (max-width: 768px) {

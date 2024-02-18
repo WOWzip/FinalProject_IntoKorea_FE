@@ -3,22 +3,31 @@ import '../../../styles/MyPage.css';
 import { Link } from 'react-router-dom';
 
 
-
 const MyPage = () => {
 
     const email = sessionStorage.getItem("email");
     const nickName = sessionStorage.getItem("nickName");
+    const provider = sessionStorage.getItem("provider");
 
     return (
         <>
             <h1>M Y P A G E</h1>
             <div className="container">
                 <div className="info-container box">
-                <p className='nickName'>{nickName} 님</p>
-                <br/>
-                <br/>
-                <br/>
-                <p className='email'>{email}</p>
+                    <p className='nickName'>{nickName} 님 </p>
+                    <p className='email'>({email})</p>
+                    <div className='myBtn_group'>
+                        <button className="myBtn">
+                            <Link to="/ModifyNickName" className="link">닉네임 변경</Link>
+                        </button>    
+                        <button className="myBtn">
+                            <Link to="/CheckPwd?value=modify" className="link">비밀번호 변경</Link>
+                        </button>    
+                        <button className="myBtn">
+                            <Link to={(provider !== "none")? "/CheckCode":"/CheckPwd?value=delete"} className="link">회원 탈퇴</Link>
+                        </button>  
+                    </div>
+                      
                 </div>
                 <div className="keep-container box">
                     <form>
