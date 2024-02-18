@@ -16,10 +16,10 @@ const StyleTextarea = styled.textarea`
 `;
 
 const Textinput = (props)=>{
-    const{height,value,onChange} = props;
+    const{height,value,onChange, placeholder } = props;
 
     return (
-        <StyleTextarea height={height} value={value} onChange={onChange}/>
+        <StyleTextarea height={height} value={value} onChange={onChange} placeholder={placeholder}/>
     );
 };
 

@@ -1,6 +1,6 @@
 
 
-ul.form {
+.qnaform {
     list-style: none;
     padding: 0;
     border-top: 2px black;
@@ -119,4 +119,10 @@ ul.form {
 .pagination {
   margin-top: 2em; 
   margin-left: 15em;
+}
+
+.qnaimage {
+  width: 100px;
+  height: auto; /* 세로 크기를 자동으로 조정하여 가로 세로 비율을 유지 */
+
 }
