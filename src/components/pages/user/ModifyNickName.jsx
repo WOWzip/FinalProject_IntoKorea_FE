@@ -142,46 +142,59 @@ const ModifyNickName = () => {
   return (
 
       <>
-        <div>
-          <h1>IntoKorea 닉네임 변경</h1>
-          <hr/>
+        <div className='modifyNick'>
           
-          <form onSubmit={handleNickNameUpdate}>
-            <div>
-              <label htmlFor="nickName">새 닉네임 :</label>
-              <input type="text" id="nickName" name="nickName" placeholder="새 닉네임" value={nickName} onChange={handleNickNameChange} onBlur={handleNickNameBlur} /><br />
+          <form className='modifyNick_form' onSubmit={handleNickNameUpdate}>
+            <p className='modifyNick_p'>IntoKorea 닉네임 변경</p>
+            <p className='modifyNick_p2'>새로운 닉네임을 입력해 주세요.</p>
+          
+            <div className='modifyNick_div'>
+              <input className='modifyNick_input' type="text" id="nickName" name="nickName" placeholder="새 닉네임 입력" value={nickName} onChange={handleNickNameChange} onBlur={handleNickNameBlur} /><br />
               <span className={isValidNickName && checkNickName ? 'success' : 'error'}>{nicknameMsg}</span>
             </div>
 
-            <button type="submit">등록</button>
+            <button className='submitBtn' type="submit">등록</button>
           </form>
         </div>
 
 
         {/* 스타일 정의 */}
         <style jsx="true">{`
-            form {
-                max-width: 300px;
-                margin: auto;
-                padding: 20px; /* Add padding to improve spacing on smaller screens */
+
+            .modifyNick {
+              margin-top: 5%;
+              margin-bottom: 5%;
             }
 
-            div {
-                margin-bottom: 20px;
+            .modifyNick_form {
+              max-width: 350px;
+              margin: auto;
+              padding: 20px; /* Add padding to improve spacing on smaller screens */
+              border: 1px solid #000;
             }
 
-            label {
-                display: block;
-                margin-bottom: 5px;
+            .modifyNick_div {
+              margin-bottom: 20px;
             }
 
-            input {
+            .modifyNick_p {
+              font-size: 30px;
+              margin-bottom: 20px;
+              text-align : center;
+            }
+    
+            .modifyNick_p2 {
+              margin-top: 30px;
+              margin-bottom: 30px;
+              text-align : center;
+            }
+
+            .modifyNick_input {
                 width: 100%;
                 padding: 8px;
                 box-sizing: border-box;
             }
 
-            
             .success {
               color: green;
               font-size: 12px;
@@ -192,19 +205,20 @@ const ModifyNickName = () => {
               font-size: 12px;
             }
 
-            button {
-                width: 100%;
-                margin-top: 10px;
-                padding: 8px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                cursor: pointer;
+            .submitBtn {
+              width: 100%;
+              margin-top: 10px;
+              padding: 8px;
+              background-color: black;
+              color: white;
+              border: none;
+              cursor: pointer;
+            }
+    
+            .submitBtn:hover {
+              background-color: #818181;
             }
 
-            button:hover {
-                background-color: #45a049;
-            }
 
             @media (max-width: 768px) {
                 /* Apply styles for screens with a maximum width of 768px */

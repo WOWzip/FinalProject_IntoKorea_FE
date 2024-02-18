@@ -39,7 +39,6 @@ import IndexNavbar from 'components/pages/fragnents/Navbars/IndexNavbar';
 import DemoFooter from 'components/pages/fragnents/Footers/DemoFooter';
 import SearchKeyword1 from 'components/pages/searchKeyword/searchKeyword1';
 import SearchFestival1 from 'components/pages/tours/searchFestival1/searchFestival1';
-import JoinForm2 from 'components/pages/user/JoinForm2';
 
 const email = sessionStorage.getItem("email");
 const checkPwd = sessionStorage.getItem("checkPwd");
@@ -83,8 +82,6 @@ root.render(
       <Route path='/FindPwd' element={<FindPwd/>}/>
       <Route path='/DeleteUser' element={<DeleteUser/>}/>
       <Route path='/CheckCode' element={<CheckCode/>}/>
-      <Route path='/JoinForm2' element={<JoinForm2/>}/>
-
       
       {/* 그 이외에 URL 요청 >> 메인페이지로 이동
       <Route path="*" element={< Navigate to="/"/>} /> */}
