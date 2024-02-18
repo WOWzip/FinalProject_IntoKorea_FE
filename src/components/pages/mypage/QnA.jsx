@@ -53,8 +53,31 @@ function QnA() {
   const [totalItems, setTotalItems] = useState(0);
   const itemsPerPage = 3; // 페이지당 보여줄 아이템 수
 
+  // useEffect(() => {
+  //   if (email === "manager@ma.com") {
+  //     axios.get("/mypage/getAllAsks")
+  //       .then((response) => {
+  //         console.log("Server Response:", response.data);
+  //         const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+  //         setQuestions(sortedQuestions);
+  //         setTotalItems(sortedQuestions.length);
+  //       })
+  //       .catch((error) => console.error("Error fetching data:", error));
+  //   } else {
+  //     axios.get("/mypage/getAllAsks")
+  //       .then((response) => {
+  //         console.log("Server Response:", response.data);
+  //         const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+  //         const filteredQuestions = sortedQuestions.filter(question => question.email === email);
+  //         setQuestions(filteredQuestions);
+  //         setTotalItems(filteredQuestions.length);
+  //       })
+  //       .catch((error) => console.error("Error fetching data:", error));
+  //   }
+  // }, [email]);
+
   useEffect(() => {
-    if (email === "manager@ma.com") {
+   
       axios.get("/mypage/getAllAsks")
         .then((response) => {
           console.log("Server Response:", response.data);
@@ -63,17 +86,7 @@ function QnA() {
           setTotalItems(sortedQuestions.length);
         })
         .catch((error) => console.error("Error fetching data:", error));
-    } else {
-      axios.get("/mypage/getAllAsks")
-        .then((response) => {
-          console.log("Server Response:", response.data);
-          const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
-          const filteredQuestions = sortedQuestions.filter(question => question.email === email);
-          setQuestions(filteredQuestions);
-          setTotalItems(filteredQuestions.length);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-    }
+    
   }, [email]);
 
   const handleDelete = (seq) => {
