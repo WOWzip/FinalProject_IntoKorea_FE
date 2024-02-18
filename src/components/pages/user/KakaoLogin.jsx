@@ -14,7 +14,7 @@ const KakaoLogin = () => {
   return (
    <>
      <div>
-      <button className='kakao' onClick={KakaoLogin}>카카오 로그인</button><br/>
+      <button className='kakao' onClick={KakaoLogin}>카카오로 회원가입</button><br/>
     </div>
      {/* 스타일 정의 */}
     <style jsx="true">{`
