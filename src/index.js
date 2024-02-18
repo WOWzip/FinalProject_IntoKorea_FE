@@ -39,6 +39,7 @@ import IndexNavbar from 'components/pages/fragnents/Navbars/IndexNavbar';
 import DemoFooter from 'components/pages/fragnents/Footers/DemoFooter';
 import SearchKeyword1 from 'components/pages/searchKeyword/searchKeyword1';
 import SearchFestival1 from 'components/pages/tours/searchFestival1/searchFestival1';
+import JoinForm2 from 'components/pages/user/JoinForm2';
 
 const email = sessionStorage.getItem("email");
 const checkPwd = sessionStorage.getItem("checkPwd");
@@ -61,7 +62,7 @@ root.render(
       <Route path="/festival" element={<SearchFestival1/> } />
 
       {/* 마이페이지 */}
-      <Route path="/Mypage" element={<MyPage/>} />
+      {/* <Route path="/Mypage" element={<MyPage/>} />
       <Route path="/QnA" element={<QnA />} />
       <Route path="/Question" element={<Question />} />
       <Route path="/History" element={<History />} />   
@@ -70,7 +71,7 @@ root.render(
       <Route path="/EditQuestion" element={<EditQuestion/>}/>
       <Route path="/QnAdetail" element={<QnAdetail/>}/>
       <Route path="/EditDiary" element={<EditDiary/>} />
-      <Route path="/DiaryDetail" element={<DiaryDetail/>} />
+      <Route path="/DiaryDetail" element={<DiaryDetail/>} /> */}
       
 
       <Route path="/tourDetail" element={<TourDetailPageApi/>} />
@@ -82,6 +83,7 @@ root.render(
       <Route path='/FindPwd' element={<FindPwd/>}/>
       <Route path='/DeleteUser' element={<DeleteUser/>}/>
       <Route path='/CheckCode' element={<CheckCode/>}/>
+      <Route path='/JoinForm2' element={<JoinForm2/>}/>
 
       
       {/* 그 이외에 URL 요청 >> 메인페이지로 이동
@@ -94,6 +96,18 @@ root.render(
               <>
                 <Route path="/Logout" element={<Logout/>}/>
                 <Route path='/CheckPwd' element={<CheckPwd/>}/>
+                
+                {/* 마이페이지 */}
+                <Route path="/Mypage" element={<MyPage/>} />
+                <Route path="/QnA" element={<QnA />} />
+                <Route path="/Question" element={<Question />} />
+                <Route path="/History" element={<History />} />   
+                <Route path="/BookMark" element={<BookMark />} />
+                <Route path="/Traveldiary" element={<TravelDiary/>}/>
+                <Route path="/EditQuestion" element={<EditQuestion/>}/>
+                <Route path="/QnAdetail" element={<QnAdetail/>}/>
+                <Route path="/EditDiary" element={<EditDiary/>} />
+                <Route path="/DiaryDetail" element={<DiaryDetail/>} />
                 
 
                 {/* <Route path='/ModifyPwd' element={<ModifyPwd/>}/>
@@ -108,6 +122,18 @@ root.render(
                 <Route path='/ModifyPwd' element={<Navigate to="/LoginForm"/>}/>
                 <Route path='/ModifyNickName' element={<Navigate to="/LoginForm"/>}/>
                 <Route path='/DeleteUser' element={<Navigate to="/LoginForm"/>}/>
+
+                {/* 마이페이지 */}
+                <Route path="/Mypage" element={<Navigate to="/LoginForm"/>} />
+                <Route path="/QnA" element={<Navigate to="/LoginForm"/>} />
+                <Route path="/Question" element={<Navigate to="/LoginForm"/>} />
+                <Route path="/History" element={<Navigate to="/LoginForm"/>} />   
+                <Route path="/BookMark" element={<Navigate to="/LoginForm"/>} />
+                <Route path="/Traveldiary" element={<Navigate to="/LoginForm"/>}/>
+                <Route path="/EditQuestion" element={<Navigate to="/LoginForm"/>}/>
+                <Route path="/QnAdetail" element={<Navigate to="/LoginForm"/>}/>
+                <Route path="/EditDiary" element={<Navigate to="/LoginForm"/>} />
+                <Route path="/DiaryDetail" element={<Navigate to="/LoginForm"/>} />
                 
               </>
       }
