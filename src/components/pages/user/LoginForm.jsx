@@ -79,39 +79,77 @@ const LoginForm = () => {
 
   return (
     <>
-      <div>
-        <h1>로그인 페이지</h1>
-        <hr/>
+      <div className='login_form'>
         <form onSubmit={handleLogin}>
-          <input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}  required/> <br />
-          <input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}  required/> <br />
+          <p className='login_p'>IntoKorea</p>
+          <input className='input' type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}  required/> <br />
+          <input className='input' type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}  required/> <br />
           <button className='submitBtn' type="submit">로그인</button>
         </form>
-        <button onClick={KakaoLogin}>카카오 로그인</button><br/>
-
-        <Link to="/JoinForm">회원가입을 아직 하지 않으셨나요?</Link> <br/>
-        <Link to="/FindId">아이디 찾기</Link> <br/>
-        <Link to="/FindPwd">비밀번호 찾기</Link> <br/>
+        <div className='login_link_group'>
+          <Link className='login_link' to="/FindId">계정 찾기 </Link><span>|</span>
+          <Link className='login_link' to="/FindPwd"> 비밀번호 찾기 </Link><span>|</span>
+          <Link className='login_link' to="/JoinForm"> 회원가입</Link>
+        </div>
+        <p className='login_p2'>or</p>
+        <Link onClick={KakaoLogin}>
+          <img className='kakao_img' src="/image/join/kakao_login.png" alt="카카오 로그인 버튼"/>
+        </Link>
+        
+        {/* <button className='kakaoBtn' onClick={KakaoLogin}>카카오 로그인</button><br/> */}
       </div>
-      
+
       {/* 스타일 정의 */}
       <style jsx="true">{`
-      form {
+      .login_form {
         max-width: 300px;
         margin: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
         padding: 20px; /* Add padding to improve spacing on smaller screens */
         border: 1px solid #000;
       }
 
-      input {
+      .login_p {
+        font-size: 30px;
+        margin-bottom: 20px;
+        text-align : center;
+      }
+
+      .login_p2 {
+        margin-bottom: 20px;
+        text-align : center;
+      }
+
+      .input {
         width: 100%;
         padding: 8px;
+        margin-bottom: 20px;
         box-sizing: border-box;
+      }
+
+      .login_link {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .login_link_group {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .kakao_img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100%;
       }
 
       .submitBtn {
         width: 100%;
         margin-top: 10px;
+        margin-bottom: 20px;
         padding: 8px;
         background-color: black;
         color: white;
@@ -122,6 +160,7 @@ const LoginForm = () => {
       .submitBtn:hover {
         background-color: #818181;
       }
+
 
       @media (max-width: 768px) {
         /* Apply styles for screens with a maximum width of 768px */

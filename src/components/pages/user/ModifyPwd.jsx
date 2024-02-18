@@ -112,45 +112,59 @@ const ModifyPwd = () => {
   return (
 
       <>
-        <div>
-          <h1>IntoKorea 비밀번호 변경</h1>
-          <hr/>
+        <div className='modifyPwd'>
           
-          <form onSubmit={handlePwdUpdate}>
-            <div>
-              <label htmlFor="password">새 비밀번호 :</label>
-              <input type="password" id="password" name="password" placeholder="새 비밀번호" value={password} onChange={handlePasswordChange} /><br />
+          <form className='modifyPwd_form' onSubmit={handlePwdUpdate}>
+            <p className='modifyPwd_p'>IntoKorea <br/>비밀번호 변경</p>
+            <p className='modifyPwd_p2'>새로운 비밀번호를 입력해 주세요.</p>
+
+            <div className='modifyPwd_div'>
+              <input className='modifyPwd_input' type="password" placeholder="새 비밀번호" value={password} onChange={handlePasswordChange} /><br />
               <span className={isValidPwd ? 'success' : 'error'}>{pwdMsg}</span>
             </div>
             
-            <div>
-              <label htmlFor="repassword">새 비밀번호 확인 :</label>
-              <input type="password" id="repassword" name="repassword"  placeholder="새 비밀번호 확인" value={repassword} onChange={handleRePasswordChange} /><br /><br />
+            <div className='modifyPwd_div'>
+              <input className='modifyPwd_input' type="password" placeholder="새 비밀번호 확인" value={repassword} onChange={handleRePasswordChange} /><br /><br />
               <span className={isValidRePwd ? 'success' : 'error'}>{rePwdMsg}</span>
             </div>
-            <button type="submit">등록</button>
+
+            <button className='submitBtn' type="submit">비밀번호 변경</button>
           </form>
         </div>
 
 
         {/* 스타일 정의 */}
         <style jsx="true">{`
-            form {
-                max-width: 300px;
-                margin: auto;
-                padding: 20px; /* Add padding to improve spacing on smaller screens */
+
+            .modifyPwd {
+              margin-top: 5%;
+              margin-bottom: 5%;
             }
 
-            div {
-                margin-bottom: 20px;
+            .modifyPwd_form {
+              max-width: 350px;
+              margin: auto;
+              padding: 20px; /* Add padding to improve spacing on smaller screens */
+              border: 1px solid #000;
             }
 
-            label {
-                display: block;
-                margin-bottom: 5px;
+            .modifyPwd_div {
+              margin-bottom: 20px;
             }
 
-            input {
+            .modifyPwd_p {
+              font-size: 30px;
+              margin-bottom: 20px;
+              text-align : center;
+            }
+    
+            .modifyPwd_p2 {
+              margin-top: 30px;
+              margin-bottom: 30px;
+              text-align : center;
+            }
+
+            .modifyPwd_input {
                 width: 100%;
                 padding: 8px;
                 box-sizing: border-box;
@@ -167,18 +181,18 @@ const ModifyPwd = () => {
               font-size: 12px;
             }
 
-            button {
-                width: 100%;
-                margin-top: 10px;
-                padding: 8px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                cursor: pointer;
+            .submitBtn {
+              width: 100%;
+              margin-top: 10px;
+              padding: 8px;
+              background-color: black;
+              color: white;
+              border: none;
+              cursor: pointer;
             }
-
-            button:hover {
-                background-color: #45a049;
+    
+            .submitBtn:hover {
+              background-color: #818181;
             }
 
             @media (max-width: 768px) {
