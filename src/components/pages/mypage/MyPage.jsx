@@ -42,7 +42,7 @@ const MyPage = () => {
                         <br/>
                         <br/>
                         <br/>
-                        <button className="keep button">
+                        <button className="keepbutton">
                             <Link to="/BookMark" className="link">즐겨찾기</Link>
                         </button>
                     </form>
@@ -70,7 +70,7 @@ const MyPage = () => {
                         <br/>
                         <br/>
                         <br/>
-                        <button className="history button">
+                        <button className="historybutton">
                             <Link to="/History" className="link">여행 일기</Link>
                         </button>
                     </form>
@@ -98,7 +98,7 @@ const MyPage = () => {
                         <br/>
                         <br/>
                         <br/>
-                        <button className="qna button">
+                        <button className="qnabutton">
                             <Link to="/QnA"  className="link">Q&A</Link>
                         </button>
                     </form>

@@ -111,81 +111,121 @@ function EditDiary() {
         '여가' : "/image/culture.png"
       };
 
-    return (
-        <div className="form-container">
-            <h2>다이어리 수정</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>제목 : </label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={handleTitleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>내용:</label>
-                    <textarea
-                        value={content}
-                        onChange={handleContentChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>장소:</label>
-                    <input
-                        type="text"
-                        value={locationA}
-                        onChange={handleLocationAChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>평점:</label>
-                    <input
-                        type="text"
-                        value={rating}
-                        onChange={handleRatingChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>방문일자</label>
+      return (
+        <div className="travelForm">
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <span style={{ display: "inline-block" }}><img className="diaimage" src="/image/diary.png" alt="diary" /></span>
+          <span style={{ display: "inline-block" }}><h2>다이어리 수정</h2></span>
+          <br/>
+          <br/>
+          <br/>
+          <form onSubmit={handleSubmit} className="two-column-form">
+            <div className="diaryform1">
+              <label className="diaryTitleLabel">제목</label>
+              <input
+                className="diaryTitle"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+              <label className="diaryContentLabel">내용</label>
+              <textarea
+                className="travelarea"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+              />
+            </div>
+            <div className="diaryform1">
+              <div className="row">
+                <div className="column">
+                  <div className="form-group">
+                    <label className="diarydateLabel">방문일자</label>
                     <DatePicker
-                        dateFormat="yyyy/MM/dd"
-                        shouldCloseOnSelect 
-                        maxDate={new Date()}
-                        selected={visitDate}
-                        onChange={handleVisitDateChange}
-                    /> ~ 
+                      className="datearea"
+                      dateFormat="yyyy/MM/dd"
+                      shouldCloseOnSelect
+                      maxDate={new Date()}
+                      selected={visitDate}
+                      onChange={handleVisitDateChange}
+                      required
+                    />{" "}
+                    <span className="SEvisitdate">출발</span> {" "}
                     <DatePicker
-                        dateFormat="yyyy/MM/dd"
-                        shouldCloseOnSelect 
-                        minDate={visitDate || new Date()}
-                        maxDate={new Date()}
-                        selected={finishDate}
-                        onChange={handleFinishDateChange}
-                    />
+                      className="datearea"
+                      dateFormat="yyyy/MM/dd"
+                      shouldCloseOnSelect
+                      minDate={visitDate || new Date()}
+                      maxDate={new Date()}
+                      selected={finishDate}
+                      onChange={handleFinishDateChange}
+                      required
+                    /> <span className="SEvisitdate">도착</span>
+                  </div>
+                  <label className="diarylocationLabel">장소</label>
+                  <input
+                    className="diarylocation"
+                    type="text"
+                    value={locationA}
+                    onChange={(e) => setLocationA(e.target.value)}
+                    required
+                  />
                 </div>
-                <div className="form-group">
-                    <label>이미지 업로드</label>
+              </div>
+              <div className="row">
+                <div className="column">
+                  <div className="form-group">
+                    <label className="diaryupLabel">이미지 업로드</label>
                     <input type="file" onChange={handleImageChange} />
+                    <label className="diaryimageLabel">사진의 제목을 적어주세요 !</label>
+                    <input
+                      className="diaryimagetext"
+                      type="text"
+                      value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
-                    <label>테마</label>
-                    <select value={theme} onChange={handleThemeChange}>
-                        <option value="">테마 선택</option>
-                        {Object.keys(themeImages).map((themeOption) => (
-                            <option key={themeOption} value={themeOption}>{themeOption}</option>
-                        ))}
-                    </select>
-                    {theme && <img className="theme-image" src={themeImages[theme]} alt={theme} />}
+              </div>
+      
+              <div className="row">
+                <div className="column">
+                  <label className="diarythemeLabel">테마</label>
+                  <select 
+                    value={theme} 
+                    onChange={(e) => setTheme(e.target.value)}
+                    required
+                  >
+                    <option value="">테마 선택</option>
+                    {Object.keys(themeImages).map((themeOption) => (
+                      <option key={themeOption} value={themeOption}>
+                        {themeOption}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <button type="submit">다이어리 수정</button>
-            </form>
+                <div className="column">
+                  {theme && (
+                    <img
+                      className="theme-image"
+                      src={themeImages[theme]}
+                      alt={theme}
+                    />
+                  )}
+                </div>
+              </div>
+              <button type="submit">다이어리 수정</button>
+            </div>
+          </form>
         </div>
-    );
+      );
+      
+    
 }
 
 export default EditDiary;

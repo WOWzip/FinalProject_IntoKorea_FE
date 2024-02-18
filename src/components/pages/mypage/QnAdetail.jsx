@@ -116,24 +116,29 @@ return (
   <MyPageSidebar />
   <MainContent>  
   <div className="qaform">
-    <h3>Q&A</h3>
+    <span><img className="commentImage" src="/image/qna.png" alt="qna" /></span>
     <div>
-      <strong className="title">{question.title}</strong><br />
-    </div>
-    <div>
-      <hr/>
-      <p className="content">{question.content}</p>
-      {question.fileName !== null && question.fileName !== 'null' && <button onClick={downloadFile}>첨부파일 다운</button>}
-      <hr/>
-      <span className="sub">{question.nickName} 님</span> 
+      <strong className="qadetailTitle">{question.title}</strong><br />
+      <span className="QAsub">{question.nickName} 님</span> 
       <span className="separator"></span>
-      <span className="sub">{question.AskDate}</span>
+      <span className="QAsub">{question.AskDate}</span>
+      <span className="separator"></span>
+      <span>{question.fileName !== null && question.fileName !== 'null' && <button className="qnadetailB" onClick={downloadFile}>첨부파일 다운</button>}</span>
+    </div>
+    <p className="separatorwidth"></p>
+    <div>
+      <hr/>
+      <p className="qadetailContent">{question.content}</p>
     </div>
     <br/>
-    <h2>댓글</h2>
+    <p className="separatorwidth"></p>
     <div>
-      <Textinput height={100} value={comment} onChange={handleCommentChange} />
-      <button onClick={submitComment}>등록</button>
+    <span style={{ display: "inline-block" }}><img className="commentImage" src="/image/comment.png" alt="comment" /></span>
+    <span style={{ display: "inline-block" }}><h2>댓글</h2></span>
+    </div>
+    <div>
+      <Textinput height={100} value={comment} onChange={handleCommentChange} placeholder="댓글을 작성하세요"/>
+      <button className="qnadetailB" onClick={submitComment}>등록</button>
     </div>
     <div>
       <br/>
@@ -147,7 +152,7 @@ return (
             <span className="separator"></span>
             <span>{c.commentDate}</span>
             <span className="separator"></span>
-            <button onClick={() => deleteComment(c.commentSeq)}>삭제</button>
+            <button className="qnadetailB" onClick={() => deleteComment(c.commentSeq)}>삭제</button>
             <hr/>
           </div>
         ))}

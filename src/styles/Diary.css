@@ -1,92 +1,65 @@
-.Dtable {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.travelForm {
+  margin: 0 auto;
+  max-width: 1000px;
+  height: 1000px;
 }
 
-.DiaryArea {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.DiaryArea li {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.DiaryArea li:last-child {
-  border-bottom: none;
-}
-
-.DiaryArea li span {
-  display: block;
-}
-
-.DiaryArea li button {
-  margin-left: 10px;
-}
-
-.dtitle {
-  font-size: 25px;
-  text-decoration: none;
-}
-
-.Dtable {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.DiaryArea {
-  width: 150%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background-color: none;
-}
-
-.DiaryArea li {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.DiaryArea li:last-child {
-  border-bottom: none;
-}
-
-.DiaryArea li span {
-  display: block;
-}
-
-.DiaryArea li button {
-  margin-left: 10px;
-  background-color: #337ab7; /* 변경: 버튼 배경색 추가 */
-  color: white; /* 변경: 버튼 글자색 변경 */
-  border: none;
-  padding: 8px 12px; /* 변경: 버튼 패딩 조정 */
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.DiaryArea li button:hover {
-  background-color: #23527c; /* 변경: 버튼 호버 시 배경색 변경 */
-}
-
-
-.pageContainer {
+.two-column-form {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0 0 20px rgba(7, 7, 7, 0.3); /* 그림자 더 크고 선명하게 설정 */
 }
 
-.DiaryArea {
-  width: 80%; /* 변경: 테이블의 너비 조정 */
-  border-radius: 5px;
-  margin-bottom: 10px;
+.travelarea {
+  height: 500px;
+}
+
+.diaryform1,
+.form-group {
+  flex: 1 1 50%;
   padding: 10px;
-  background-color: none;
+}
+
+.row {
+  display: flex;
+  width: 400px;
+}
+
+.column {
+  flex: 1;
+  padding: 0 10px;
+  
+}
+
+.two-column-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.two-column-form input,
+.two-column-form textarea,
+.two-column-form select {
+  width: 100%;
+}
+
+.diaimage {
+  width: 60px;
+  height: auto; /* 세로 크기를 자동으로 조정하여 가로 세로 비율을 유지 */
+  margin-bottom: 15px;
+}
+
+.diaryedit {
+  background-color: green;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 30px;
+}
+
+.diarydelete {
+  background-color: brown;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 30px;
 }

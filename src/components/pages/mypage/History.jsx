@@ -61,22 +61,6 @@ const StyledSelect = styled.select`
   border: 1px solid #ccc;
 `;
 
-const StyledTable = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-`;
-
-const StyledTh = styled.th`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  background-color: #f2f2f2;
-`;
-
-const StyledTd = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-`;
 
 function History() {
   const [diarys, setDiarys] = useState([]);
@@ -115,11 +99,17 @@ function History() {
   }
 
   const handleDelete = (seq) => {
-    axios.delete(`/mypage/deleteDiary/${seq}`)
-      .then(() => {
-        setDiarys(diarys.filter(diary => diary.seq !== seq));
-      })
-      .catch((error) => console.error("다이어리 삭제 에러 :", error))
+    // 사용자에게 삭제 여부를 묻는 경고창 표시
+    const confirmDelete = window.confirm("정말로 다이어리를 삭제하시겠습니까?");
+  
+    // 사용자가 확인을 선택한 경우에만 삭제 요청 보내기
+    if (confirmDelete) {
+      axios.delete(`/mypage/deleteDiary/${seq}`)
+        .then(() => {
+          setDiarys(diarys.filter(diary => diary.seq !== seq));
+        })
+        .catch((error) => console.error("다이어리 삭제 에러 :", error))
+    }
   }
 
   const handleSearchTypeChange = (e) => {
@@ -197,7 +187,8 @@ function History() {
     <PageContainer>
       <MyPageSidebar />
       <MainContent>
-        <h2>다이어리</h2>
+        <span style={{ display: "inline-block" }}><img className="diaimage" src="/image/diary.png" alt="diary" /></span>
+        <span style={{ display: "inline-block" }}><h2>다이어리</h2></span>
         {diarys.length === 0 ? (
           <div>
           <p>다이어리를 작성해주세요!</p>
@@ -210,58 +201,42 @@ function History() {
         </div>
         ) : (
           <>
-{/* 
-        <ul className="Dtable">
-          {currentItems.map((diary) => (
-            <div key={diary.seq} className="DiaryArea">
-              <li>
-                 {imagePaths && imagePaths[diary.seq] && <img src={imagePaths[diary.seq]} alt="다이어리 이미지" className="diary-image" style={{ maxWidth: '100px', marginTop: '10px' }} />}
-                <Link
-                  to={`/DiaryDetail?seq=${diary.seq}`}
-                  className="dtitle" 
-                >
-                  {diary.rating}
-                </Link>
-                <img src={themeImages[diary.theme]} alt={diary.theme} style={{ maxWidth: '50px', marginTop: '10px' }} />
-                <span></span>
-                <span>방문일 : {diary.visitDate} ~ {diary.finishDate}</span>
-                <br />
-                <button onClick={() => handleEdit(diary.seq)}>수정</button>
-                <button onClick={() => handleDelete(diary.seq)}>삭제</button>
-              </li>
-            </div>
-          ))}
-        </ul> */}
 
-<StyledTable >
-          <thead>
-            <tr>
-              <StyledTh>날짜</StyledTh>
-              <StyledTh>제목</StyledTh>
-              <StyledTh>장소</StyledTh>
-              <StyledTh>테마</StyledTh>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((diary) => (
-              <tr key={diary.seq}>
-                <StyledTd>{diary.visitDate} ~ {diary.finishDate}</StyledTd>
-                <StyledTd>
-                  <Link to={`/DiaryDetail?seq=${diary.seq}`} className="dtitle">
-                    {diary.rating}
-                  </Link>
-                </StyledTd>
-                <StyledTd>{diary.location}</StyledTd>
-                <StyledTd>
-                <img src={themeImages[diary.theme]} alt={diary.theme} style={{ maxWidth: '50px', marginTop: '10px' }} />
 
-                </StyledTd>
-                <button onClick={() => handleEdit(diary.seq)}>수정</button>
-                  <button onClick={() => handleDelete(diary.seq)}>삭제</button>
-              </tr>
-            ))}
-          </tbody>
-        </StyledTable>
+{currentItems.map((diary) => (
+  <tr key={diary.seq} style={{width:"500px"}}>
+    <td style={{paddingRight:"30px"}}> 
+      <img src={imagePaths && imagePaths[diary.seq]} alt="다이어리 이미지" className="diaryImage" style={{width:"150px"}} />
+    </td>
+    <td style={{paddingBottom:"50px",paddingRight:"30px"}}>
+      <div style={{fontSize:"40px", marginBottom:"10px"}}>         
+        <Link to={`/DiaryDetail?seq=${diary.seq}`} style={{textDecoration:"none", color:"black"}}>
+          {diary.dtitle}
+        </Link>
+      </div>
+      <div style={{marginBottom:"10px"}}>
+        {diary.visitDate} ~ {diary.finishDate}
+      </div>
+      <div style={{marginBottom:"10px"}}>
+        {diary.location}
+      </div>
+    </td>
+    <td style={{paddingBottom:"20px", paddingRight:"30px"}}>
+      <img src={themeImages[diary.theme]} alt={diary.theme} style={{ maxWidth: '50px', marginTop: '10px' }} />
+    </td>
+    <td style={{paddingBottom:"20px"}}>
+      <div><button className="diaryedit" onClick={() => handleEdit(diary.seq)}>수정</button></div>
+      <br/>
+      <div><button className="diarydelete" onClick={() => handleDelete(diary.seq)}>삭제</button></div>
+    </td>
+  </tr>
+))}
+
+
+
+
+
+
         <br/>
         <StyledButton>
           <Link to="/TravelDiary">
