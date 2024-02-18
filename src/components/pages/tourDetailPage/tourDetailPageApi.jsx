@@ -54,7 +54,6 @@ const TourDetailPageApi = ( {contentid} ) => {
 
     return (
         <>
-        <div>상세페이지</div>
         <TourDetailPageItem data={datas} />
         </>
     )

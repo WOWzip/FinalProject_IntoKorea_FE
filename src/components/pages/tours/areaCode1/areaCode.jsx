@@ -13,9 +13,9 @@ import CategoryTagButton from "../../../ui/categoryTagButton"
 //  > 상세페이지에서는 그 정보를 바탕으로 api 호출
 
 const AreaCodeBlock = styled.div`
-    border: 1px solid gray;
+    // border: 1px solid gray;
     margin: 1em;
-    background-color: #e2e2e2;
+    // background-color: #e2e2e2;
 `;
 
 

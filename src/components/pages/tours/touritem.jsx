@@ -35,6 +35,11 @@ const TourItemBlock = styled.div`
         }
     }
 
+    .bookmarkBox {
+        display: flex;
+        margin-left: auto;
+    }
+
     // &+& {
     //     margin-top: 3rem;
     // }
@@ -119,7 +124,7 @@ const TourItem = ({data}) => {
                 ) : (
                     <div className="firstimage" >
                         <Link to={`/tourDetailPage/${contentid}`}>
-                            <img src="/image/한국관광공사-로고-300x162.png" alt="빈 이미지" />
+                            <img src="../image/koreaTourismOrganijationLogo.png" alt="빈 이미지" />
                         </Link>
                     </div>
                 )}
@@ -129,8 +134,8 @@ const TourItem = ({data}) => {
                         <p>{addr1} / {zipcode}</p>
                     </Link>
                 </div>
-                <div className="keep">
-                    <BookmarkButton onClick={bookmarkHandle} isbookmarked={isBookmarked} />
+                <div className="bookmarkBox">
+                    <BookmarkButton onClick={bookmarkHandle} isBookmarked={isBookmarked} />
                 </div>
             </TourItemBlock>
         </>

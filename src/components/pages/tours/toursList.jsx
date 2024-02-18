@@ -24,14 +24,14 @@ const ToursList = () => {
     // }, [a]);
 
 
-    const handleSearch = (term) => {
-        setSearchTerm(term);
-    };
+    // const handleSearch = (term) => {
+    //     setSearchTerm(term);
+    // };
 
     return (
         <>
         <div className="toursListBox">
-            <SearchBar onSearch={handleSearch} />
+            {/* <SearchBar onSearch={handleSearch} /> */}
             <ToursListApi keyword={searchTerm}/>
         </div>
 

@@ -25,6 +25,42 @@ const TourListBlock = styled.div`
         padding-left: 1rem;
         padding-right: 1rem;
     }
+    
+    h2 {
+        color: black;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    p {
+        color: silver;
+    }
+
+    .listBox {
+        margin-top: 8em;
+        
+    }
+
+    .codeBox {
+        padding: 20px; /* 안쪽 여백 설정 */
+        margin-bottom: 20px; /* 하단 여백 설정 */
+        display: flex;
+        flex-direction: column;
+        // background-color: silver;
+    }
+
+    .codeBox .blockBox {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+    }
+
+    .codeBox button:hover {
+        background-color: #0056b3; /* 호버 시 배경색 변경 */
+    }
 `;
 
 const PaginationBox = styled.div`
@@ -52,6 +88,13 @@ const PaginationBox = styled.div`
     ul.pagination li a:hover,
     ul.pagination li a.active { color: blue; }
 `
+const SearchBarContainer = styled.div`
+    margin-top: 20px;
+
+    input {
+        border: 1px solid gray;
+    }
+`;
 
 
 const ToursListApi = ({keyword}) => {
@@ -112,6 +155,7 @@ const ToursListApi = ({keyword}) => {
                         // 	지역기반관광정보조회 - areaBasedList1
                         `http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=${itemsCountPerPage}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&ServiceKey=${key}&listYN=Y&arrange=Q&contentTypeId=${contentsTypeId}&areaCode=${areaCode}&sigunguCode=${detailAreaCode}&cat1=${categoryCode}&cat2=&cat3=`
                         );
+                        console.log("값?! : " ,response)
                     setData(response.data.response.body.items.item);
                     setTotalData(response.data.response.body.totalCount);
                     setLoading(false);
@@ -150,11 +194,13 @@ const ToursListApi = ({keyword}) => {
         const renderDetailAreaCode = (areaCode, areaName) => {
             if (areaCode !== '') {
                 return (
-                    <DetailAreaCode
-                        code={areaCode}
-                        area={areaName}
-                        onClick={handleFilterDetailArea}
-                    />
+                    <div className="blockBox">
+                        <DetailAreaCode
+                            code={areaCode}
+                            area={areaName}
+                            onClick={handleFilterDetailArea}
+                            />
+                    </div>
                 );
             } else {
                 return null;
@@ -199,31 +245,73 @@ const ToursListApi = ({keyword}) => {
 
     // 아직 datas 값이 설정되지 않았을 때
     if(!datas){
-        return <div>값이 없습니다.</div>;
+        // setTotalData(0);
+        return (
+            <TourListBlock>
+                <div className="codeBox">
+                    {/* 값 확인
+                    <h4>areaCode : {areaCode} , categoryCode : {categoryCode} , 
+                    contentsTypeId : {contentsTypeId} , detailAreaCode : {detailAreaCode}</h4> */}
+                {/* 카테고리 - 버튼을 누르면 버튼의 값으로 api 요청 */}
+                    <div className="blockBox">
+                        <AreaCode onClick={handleFilterArea}/>
+                    </div>
+                    {showDetailAreaCode}
+                    <div className="blockBox">
+                    <CategoryCode onClick={handleFilterCategory}/>
+                    </div>
+                    <div className="blockBox">
+
+                    <ContentsTypeId onClick={handleFilterContentsTypeId} />
+                    </div>
+                </div>
+
+                {/* 검색 */}
+                <SearchBarContainer>
+                    <SearchBar onSearch={handleSearch}/>
+                </SearchBarContainer>
+
+                <div className="listBox">
+                <TourHeader totalCount={0} a={filter} />
+                </div>
+            </TourListBlock>
+        );
     }
 
     return (
         <>  
             <TourListBlock>
-                <div>
-                    값 확인
+                <div className="codeBox">
+                    {/* 값 확인
                     <h4>areaCode : {areaCode} , categoryCode : {categoryCode} , 
-                    contentsTypeId : {contentsTypeId} , detailAreaCode : {detailAreaCode}</h4>
-                </div>
+                    contentsTypeId : {contentsTypeId} , detailAreaCode : {detailAreaCode}</h4> */}
                 {/* 카테고리 - 버튼을 누르면 버튼의 값으로 api 요청 */}
-                <AreaCode onClick={handleFilterArea}/>
-                {showDetailAreaCode}
-                <CategoryCode onClick={handleFilterCategory}/>
-                <ContentsTypeId onClick={handleFilterContentsTypeId} />
+                    <div className="blockBox">
+                        <AreaCode onClick={handleFilterArea}/>
+                    </div>
+                    {showDetailAreaCode}
+                    <div className="blockBox">
+                    <CategoryCode onClick={handleFilterCategory}/>
+                    </div>
+                    <div className="blockBox">
+
+                    <ContentsTypeId onClick={handleFilterContentsTypeId} />
+                    </div>
+                </div>
 
                 {/* 검색 */}
-                <SearchBar onSearch={handleSearch}/>
+                <SearchBarContainer>
+                    <SearchBar onSearch={handleSearch}/>
+                </SearchBarContainer>
+
+                <div className="listBox">
 
                 {/* 리스트 내용  */}
                 <TourHeader totalCount={totalData} a={filter} />
                     {datas.map((data, index) => (
-                            <TourItem key={data.firstimage || index } data={data} />
-                    ))}
+                        <TourItem key={data.firstimage || index } data={data} />
+                        ))}
+                </div>
 
                 {/* 페이징 */}
                 <PaginationBox>

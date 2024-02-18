@@ -262,7 +262,7 @@ const DetailIntro1Item = ( {data , contenttypeid } ) => {
                 <div className="introBox" key={key}>
                     <li>
                             <strong>{key}</strong>
-                            <span>{value}</span>
+                            <span>{value === "1" ? '유' : (value === "0" ? '무' : value)}</span>
                     </li>  
                 </div>
                 ))}

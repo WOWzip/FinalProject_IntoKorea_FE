@@ -32,7 +32,7 @@ const Input = styled.input`
   outline: none;
   border: none;
   padding-left: 20px;
-  color: #28d7d7;
+  color: black;
   transition: width 0.5s;
 `;
 
