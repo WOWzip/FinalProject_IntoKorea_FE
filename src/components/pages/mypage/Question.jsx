@@ -106,6 +106,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../../../styles/AskStyles.css';
+import MyPageSidebar from "./ui/MyPageSidebar";
+import styled from "styled-components";
+
+const PageContainer = styled.div`
+  display: flex;
+`;
+
+const MainContent = styled.div`
+  margin: auto;
+`;
 
 
 function Question() {
@@ -154,7 +164,9 @@ function Question() {
   };
 
   return (
-    <>
+    <PageContainer>
+    <MyPageSidebar />
+    <MainContent>
       <h2 className="ask-title">질문 등록</h2>
       <div className="ask-container">
         <form className="ask-form" onSubmit={handleSubmit}>
@@ -191,7 +203,8 @@ function Question() {
           <button type="submit" className="form-button">등록</button>
         </form>
       </div>
-    </>
+      </MainContent>
+    </PageContainer>
   );
 }
 

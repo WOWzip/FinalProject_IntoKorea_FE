@@ -7,6 +7,16 @@ import { useLocation } from "react-router-dom";
 import '../../../styles/detail.css';
 import '../../../styles/qna.css';
 import Textinput from "./Textinput";
+import styled from "styled-components";
+import MyPageSidebar from "./ui/MyPageSidebar";
+
+const PageContainer = styled.div`
+display: flex;
+`;
+
+const MainContent = styled.div`
+margin: auto;
+`;
 
 function QnAdetail() {
   const nickName = sessionStorage.getItem("nickName");
@@ -102,8 +112,11 @@ const downloadFile = async () => {
 
 
 return (
-  <div className="form">
-    <h1>상세글</h1>
+  <PageContainer>
+  <MyPageSidebar />
+  <MainContent>  
+  <div className="qaform">
+    <h3>Q&A</h3>
     <div>
       <strong className="title">{question.title}</strong><br />
     </div>
@@ -117,12 +130,12 @@ return (
       <span className="sub">{question.AskDate}</span>
     </div>
     <br/>
+    <h2>댓글</h2>
     <div>
       <Textinput height={100} value={comment} onChange={handleCommentChange} />
       <button onClick={submitComment}>등록</button>
     </div>
     <div>
-      <h2>댓글</h2>
       <br/>
       <div>
         {comments.map((c, index) => (
@@ -141,6 +154,8 @@ return (
       </div>
     </div>
   </div>
+  </MainContent> 
+  </PageContainer>
 );
 }
 

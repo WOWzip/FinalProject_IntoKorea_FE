@@ -1,15 +1,60 @@
-.form{
-    max-width: 700px;
+
+.qaform {
+    max-width: 1000px;
+    width: 1000px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 20px; /* 내부 여백 */
+    background-color: #f9f9f9; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 8px; /* 테두리 모서리 둥글게 */
 }
 
-.title{
+.title {
     font-size: 40px;
+    margin-bottom: 20px; /* 제목과 내용 사이 간격 */
 }
 
 .sub {
     font-size: 20px;
+    color: #666; /* 부가 정보 색상 */
 }
 
 .content {
-    font-size: 30px;
+    font-size: 20px;
+    line-height: 1.5; /* 줄 간격 */
+    margin-bottom: 20px; /* 내용 아래 여백 */
+}
+
+.button {
+    background-color: #007bff; /* 버튼 배경색 */
+    color: #fff; /* 버튼 글자색 */
+    border: none; /* 버튼 테두리 제거 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    padding: 10px 20px; /* 버튼 내부 여백 */
+    font-size: 16px;
+    cursor: pointer; /* 포인터 모양으로 변경 */
+    transition: background-color 0.3s; /* 배경색 변경 시 부드럽게 변화 */
+}
+
+.button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.comment {
+    margin-bottom: 20px; /* 댓글 사이 간격 */
+    padding-bottom: 20px; /* 댓글 아래 여백 */
+    border-bottom: 1px solid #ddd; /* 댓글 아래 테두리 */
+}
+
+.comment strong {
+    font-weight: bold; /* 댓글 내용 굵게 */
+}
+
+.comment span {
+    font-size: 14px; /* 댓글 부가 정보 글자 크기 */
+    color: #888; /* 댓글 부가 정보 색상 */
+}
+
+.separator {
+    margin: 0 5px; /* 구분자 간격 */
 }
