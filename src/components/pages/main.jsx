@@ -1,7 +1,51 @@
 import { Link , useNavigate } from "react-router-dom";
 import SearchBar from "./searchKeyword/searchBar";
-import { useState } from "react";
 import RecommendPlace from "./recommendPlace/recommendPlace";
+import styled from "styled-components";
+import { Container } from "reactstrap";
+
+
+const MainContainer = styled.div`
+
+    .content-center{
+        margin-top: 0;
+        margin-bottom: 30em;
+    }
+
+    .searchBar {
+        margin-top: em;
+        margin-left: 10em;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .recommendBox {
+        margin-top: 26em;
+        margin-right: 30em;
+        width: 40em;
+        height: 50em;
+        padding: 20px;
+        border-radius: 10px;
+        position: absolute;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+    
+    .recommendBox h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+        color: white
+      }
+    
+    .recommendBox .content {
+        margin: 0;
+    }
+
+    .recommendBox h5, p{
+        color: white;
+    }
+`
+
 
 
 const Main = () => {
@@ -19,77 +63,62 @@ const Main = () => {
     };
 
     return (
-        <>
-            <h2>메인페이지입니다</h2>
+        <MainContainer>
 
-            <Link to="check">api 체크</Link><br/>
-            <Link to="Mypage">마이페이지</Link><br/>
-            <Link to="checkData">코드 확인</Link><br/>
-            <Link to="tourDetail">여행지 상세페이지</Link><br/>
-            <Link to="toursMain">여행지 보기 </Link> <br/>
-            <Link to="Map">여행 지도</Link><br/>
-            <Link to="search">서치 확인</Link><br/>
-            <SearchBar onSearch={handleSearch} /><br/>
-            <Link to="festival">행사 축제..</Link><br/>
+        <div
+            className="page-header section-dark"
+            style={{
+            backgroundImage:
+                "url(" + require("assets/img/antoine-barres.jpg") + ")",
+            }}
+        >
+            <div className="filter" />
+            <div className="content-center">
+            <Container>
+                <div className="title-brand">
+                <h1 className="presentation-title">Into Korea</h1>
+                <div className="fog-low">
+                    <img alt="..." src={require("assets/img/fog-low.png")} />
+                </div>
+                <div className="fog-low right">
+                    <img alt="..." src={require("assets/img/fog-low.png")} />
+                </div>
+                </div>
+                {/* <h2 className="presentation-subtitle text-center">
+                메인페이지라네
+                </h2> */}
+            </Container>
+            <br/>
+            </div>
+            <div
+            className="moving-clouds"
+            style={{
+                backgroundImage: "url(" + require("assets/img/clouds.png") + ")",
+            }}
+            />
+            <h6 className="category category-absolute">
+            Designed and coded by{" "}
+            <Link 
+                to ="https://www.creative-tim.com?ref=pkr-index-page"
+                target="_blank"
+            >
+                <img
+                alt="..."
+                className="creative-tim-logo"
+                src={require("assets/img/creative-tim-white-slim2.png")}
+                />
+            </Link>
+                </h6>
+            <div className="searchBar">
+        <SearchBar onSearch={handleSearch} /><br/>
+            </div>
+        <div className="recommendBox">
+            <h5> 오늘의 추천 TOP5</h5>
             <RecommendPlace />
+        </div>
+        </div>
 
-            {							
-                (email) ?
-                    <>
-                        {/* 회원 정보 */}
-                        <li className="nav-item">
-                            <span className="nav-link"> {nickName} 님 반갑습니다 <i className="fab fa-ello"></i> &nbsp; </span>
-                        </li>
-
-                        {/* 닉네임 변경 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/ModifyNickName"> 닉네임 변경 </Link>
-                        </li>
-
-                        {/* 비밀번호 변경 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/CheckPwd?value=modify"> 비밀번호 변경 </Link>
-                        </li>
-
-                        {/* 회원 탈퇴 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to={(provider !== "none")? "/CheckCode":"/CheckPwd?value=delete"}> 회원탈퇴 </Link>
-                        </li>
-
-                        {/* 로그아웃 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/Logout"><i className="fas fa-sign-out-alt"></i> 로그아웃</Link>
-                        </li>
-
-                    </>
-                    :
-                    <>
-                        {/* 로그인 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/LoginForm">로그인</Link>
-                        </li>
-
-                        {/* 회원가입 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/JoinForm">회원가입</Link>
-                        </li>
-
-
-                        {/* 아이디찾기 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/FindId">아이디 찾기</Link>
-                        </li>
-
-                        {/* 비밀번호찾기 */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/FindPwd">비밀번호 찾기</Link>
-                        </li>
-
-                        
-                    </>
-            }
-            
-        </>
+        </MainContainer>
     )
 }
 
