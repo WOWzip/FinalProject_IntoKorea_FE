@@ -4,7 +4,11 @@ import React from "react";
 import IndexNavbar from "./fragnents/Navbars/IndexNavbar";
 import IndexHeader from "./fragnents/Headers/IndexHeader";
 import DemoFooter from "./fragnents/Footers/DemoFooter";
+import styled from "styled-components";
 
+const AppContainer = styled.div`
+  position: relative;
+`
 
 function App() {
   document.documentElement.classList.remove("nav-open");
@@ -20,10 +24,10 @@ function App() {
 
   return (
 
-    <>
-    <IndexHeader />
+    <AppContainer>
+    {/* <IndexHeader /> */}
     <Main/>
-    </>
+    </AppContainer>
 
   );
 }
