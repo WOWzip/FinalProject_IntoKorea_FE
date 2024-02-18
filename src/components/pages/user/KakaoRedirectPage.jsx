@@ -51,9 +51,6 @@ const KakaoRedirectPage = () => {
                 
             } 
 
-            
-
-            // window.location.replace("/"); 
             navigate("/"); // 로그인 성공 후 이동할 페이지
         } catch (error) {
             console.log("소셜 로그인 에러" ,error);
