@@ -50,7 +50,7 @@ const RecommendPlace = () => {
         <>
         {datas.map((data, index) => (
             <>
-            <RecommendPlaceItem key={data.firstimage || index } data={data} index={index}/>
+            <RecommendPlaceItem key={data.firstimage} data={data} index={index}/>
             </>
             ))}
         </>
