@@ -18,9 +18,15 @@ const RecommendPlace = () => {
 
             const fetchData = async() => {
                 const response = await CallAPI(link, param ,setLoading)
-                if (response.data.response.body.items.item !== null) {
+                // if (response.data.response.body.items.item !== null) {
+                //     setData(response.data.response.body.items.item);
+                //     console.log(response)
+                // }
+                if (response.data && response.data.response && response.data.response.body && response.data.response.body.items && response.data.response.body.items.item !== null) {
                     setData(response.data.response.body.items.item);
-                    console.log(response)
+                    console.log(response);
+                } else {
+                    console.error("API response does not contain expected data");
                 }
     
             }

@@ -2,9 +2,9 @@ import styled from "styled-components";
 import CategoryTagButton from "../../../ui/categoryTagButton";
 
 const CategoryCodeBlock = styled.div`
-    border: 1px solid gray;
+    // border: 1px solid gray;
     margin: 1em;
-    background-color: #e2e2e2;
+    // background-color: #e2e2e2;
 `;
 
 const CategoryCode = ( {onClick} ) => {

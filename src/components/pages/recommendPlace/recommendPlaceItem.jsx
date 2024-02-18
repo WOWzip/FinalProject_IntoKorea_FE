@@ -10,8 +10,8 @@ const RecommendPlaceItem = ({data, index}) => {
         <div className="content">
                     <Link to={`/tourDetailPage/${contentid}`}>
                         <h2>{index +1}.{title}</h2>
-                        <p>{addr1}</p>
                     </Link>
+                    <p>&nbsp;&nbsp; - {addr1}</p>
                 </div>
     )
 }

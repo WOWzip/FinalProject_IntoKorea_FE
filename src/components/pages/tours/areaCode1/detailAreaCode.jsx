@@ -7,9 +7,9 @@ import DetailAreaInfo from "./detailAreaInfo";
 
 
 const DetailAreaCodeBlock = styled.div`
-    border: 1px solid gray;
+    // border: 1px solid gray;
     margin: 1em;
-    background-color: #e2e2e2;
+    // background-color: #e2e2e2;
 `;
 
 // 값 저장한 페이지 작성 및 

@@ -7,6 +7,16 @@ import { Container } from "reactstrap";
 
 const MainContainer = styled.div`
 
+
+    h2 {
+        color: black;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
     .content-center{
         margin-top: 0;
         margin-bottom: 30em;
@@ -30,7 +40,11 @@ const MainContainer = styled.div`
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 2;
     }
-    
+
+    .recommendBox a {
+        text-decoration: none;
+    }
+
     .recommendBox h2 {
         font-size: 30px;
         margin-bottom: 10px;
@@ -39,6 +53,9 @@ const MainContainer = styled.div`
     
     .recommendBox .content {
         margin: 0;
+    }
+    .recommendBox .content a h2:hover{
+        color: gray;
     }
 
     .recommendBox h5, p{

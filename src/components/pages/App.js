@@ -26,7 +26,7 @@ function App() {
 
     <AppContainer>
     {/* <IndexHeader /> */}
-    <Main/>
+      <Main/>
     </AppContainer>
 
   );

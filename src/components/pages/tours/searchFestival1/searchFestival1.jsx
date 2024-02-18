@@ -8,6 +8,55 @@ import styled from "styled-components";
 import AreaCode from "../areaCode1/areaCode";
 import DetailAreaCode from "../areaCode1/detailAreaCode";
 
+const SearchFestivalBlock = styled.div`
+    box-sizing: border-box;
+    padding-bottom: 3rem;
+    width: 768px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    @media screen and (max-width: 768px){
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    h2 {
+        color: black;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    p {
+        color: silver;
+    }
+
+    .listBox {
+        margin-top: 8em;
+        
+    }
+
+    .codeBox {
+        padding: 20px; /* 안쪽 여백 설정 */
+        margin-bottom: 20px; /* 하단 여백 설정 */
+        display: flex;
+        flex-direction: column;
+        // background-color: silver;
+    }
+
+    .codeBox .blockBox {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+    }
+
+    .codeBox button:hover {
+        background-color: #0056b3; /* 호버 시 배경색 변경 */
+    }
+`;
+
 
 const PaginationBox = styled.div`
     .pagination { 
@@ -92,11 +141,13 @@ const SearchFestival1 = () => {
         const renderDetailAreaCode = (areaCode, areaName) => {
             if (areaCode !== '') {
                 return (
-                    <DetailAreaCode
-                        code={areaCode}
-                        area={areaName}
-                        onClick={handleFilterDetailArea}
-                    />
+                    <div className="blockBox">
+                        <DetailAreaCode
+                            code={areaCode}
+                            area={areaName}
+                            onClick={handleFilterDetailArea}
+                            />
+                    </div>
                 );
             } else {
                 return null;
@@ -118,21 +169,38 @@ const SearchFestival1 = () => {
 
     // 아직 datas 값이 설정되지 않았을 때
     if(!datas){
-        return <div>값이 없습니다.</div>;
+        return (
+            <SearchFestivalBlock>
+                <div className="codeBox">
+                    <div className="blockBox">
+                        <AreaCode onClick={handleFilterArea}/>
+                    </div>
+                    {showDetailAreaCode}
+                </div>
+                <TourHeader totalCount={0} a={filter} />
+            </SearchFestivalBlock>
+        );
     }
 
 
     return (
-        <>
+        <SearchFestivalBlock>
+            <div className="codeBox">
+                <div className="blockBox">
+                    <AreaCode onClick={handleFilterArea}/>
+                </div>
+                {showDetailAreaCode}
+            </div>
 
-            <AreaCode onClick={handleFilterArea}/>
-            {showDetailAreaCode}
             {/* 리스트 내용  */}
+            <div className="listBox">
+
             <TourHeader totalCount={totalData} a={filter} />
                 {datas.map((data, index) => (
-                        <TourItem key={data.firstimage || index } data={data} />
-                ))}
+                    <TourItem key={data.firstimage || index } data={data} />
+                    ))}
     
+            </div>
             {/* 페이징 */}
             <PaginationBox>
                 <Pagination
@@ -148,7 +216,7 @@ const SearchFestival1 = () => {
                     onChange={handlePageChange}>
                 </Pagination>
             </PaginationBox>
-        </>
+        </SearchFestivalBlock>
     )
 
 
