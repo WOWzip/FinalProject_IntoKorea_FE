@@ -91,7 +91,7 @@ const LoginForm = () => {
           <Link className='login_link' to="/FindPwd"> 비밀번호 찾기 </Link><span>|</span>
           <Link className='login_link' to="/JoinForm"> 회원가입</Link>
         </div>
-        <p className='login_p2'>or</p>
+        <p className='login_p2'></p>
         <Link onClick={KakaoLogin}>
           <img className='kakao_img' src="/image/join/kakao_login.png" alt="카카오 로그인 버튼"/>
         </Link>

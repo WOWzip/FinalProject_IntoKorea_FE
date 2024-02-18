@@ -13,6 +13,38 @@ const PageContent = styled.div`
     flex-grow: 1;
 `;
 
+const BookMarkBox = styled.div`
+    // flex-grow: 1;
+    box-sizing: border-box;
+    padding-bottom: 3rem;
+    width: 768px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    @media screen and (max-width: 768px){
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    h2 {
+        color: black;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    p {
+        color: silver;
+    }
+
+    .listBox {
+        margin-top: 8em;
+        
+    }
+`
+
 const Title = styled.h1`
     margin-bottom: 20px;
 `;
@@ -91,20 +123,8 @@ const BookMark = () => {
         <>
             <Container>
                 <MyPageSidebar />
-                <PageContent className="qna-page-content">
-                    <Title>즐겨찾기</Title>
-                    <div>
-                        <div className="textarea">
-                            <TextContainer>
-                                {/* <ThumbnailImage src="이미지 URL" alt="명동성당" /> */}
-                                <TextContent>
-                                    <StrongTitle>명동성당</StrongTitle>
-                                    <Address>서울특별시 중구 명동</Address>
-                                </TextContent>
-                            </TextContainer>
-                        </div>
-                    </div>
-            {datas.map((data, index) => (
+                <BookMarkBox>
+            {/* {datas.map((data, index) => (
                 <TextContainer key={index}>
                 {data.firstimage ? (
                     <Link to={`/tourDetailPage/${data.contentid}`}>
@@ -122,11 +142,11 @@ const BookMark = () => {
                     </Link>
                 </div>
                 </TextContainer>
-            ))}
+            ))} */}
             {datas.map((data, index) => (
                 <TourItem key={data.firstimage || index } data={data} />
         ))}
-                </PageContent>
+                </BookMarkBox>
             </Container>
             </>
     )

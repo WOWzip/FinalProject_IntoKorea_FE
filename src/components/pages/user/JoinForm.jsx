@@ -351,7 +351,7 @@ const handleEPwConfirm =  async () => {
       <Link className='kakao_link' onClick={KakaoLogin}>
         <img className='kakao_img' src="/image/join/kakao_login.png" alt="카카오 로그인 버튼"/>
       </Link>
-      <p className='join_p2'>or</p>
+      <p className='join_p2'></p>
       <div className='join_form'>
         <form onSubmit={handleJoin}>
           <p className='join_p'>IntoKorea 회원가입</p>
