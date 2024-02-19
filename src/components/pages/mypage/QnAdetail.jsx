@@ -11,14 +11,15 @@ import styled from "styled-components";
 import MyPageSidebar from "./ui/MyPageSidebar";
 
 const PageContainer = styled.div`
-display: flex;
+  display: flex;
 `;
 
 const MainContent = styled.div`
-margin: auto;
+  margin: auto;
 `;
 
 function QnAdetail() {
+  const [currentUserEmail, setCurrentUserEmail] = useState(""); // 현재 로그인한 사용자의 이메일 상태 추가
   const nickName = sessionStorage.getItem("nickName");
   const email = sessionStorage.getItem("email"); // 이메일 추가
   const location = useLocation();
@@ -33,6 +34,12 @@ function QnAdetail() {
   // 댓글
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+
+  useEffect(() => {
+    // 현재 로그인한 사용자의 이메일을 세션 스토리지에서 가져와 설정합니다.
+    const userEmail = sessionStorage.getItem("email");
+    setCurrentUserEmail(userEmail);
+  }, []);
 
   useEffect(() => {
     axios.get(`/mypage/comments?askSeq=${question.seq}`)
@@ -77,91 +84,107 @@ function QnAdetail() {
   };
   
 
-
-  //댓글 삭제
-  const deleteComment = (commentSeq) => {
+//댓글 삭제
+const deleteComment = (commentSeq, commentEmail) => {
+  // 현재 로그인한 사용자의 이메일이 "manager@ma.com"인 경우 모든 댓글 삭제 가능
+  if (currentUserEmail === "manager@ma.com") {
     axios.delete(`/mypage/comments/delete/${commentSeq}`)
+      .then(res => {
+        console.log("댓글 삭제 성공");
+        setComments(comments.filter(c => c.commentSeq !== commentSeq));
+      })
+      .catch(error => console.error("댓글 삭제 실패:", error));
+  } else {
+    // 현재 로그인한 사용자의 이메일과 댓글 작성자의 이메일이 같을 경우에만 삭제
+    if (currentUserEmail === commentEmail) {
+      axios.delete(`/mypage/comments/delete/${commentSeq}`)
         .then(res => {
-            console.log("댓글 삭제 성공");
-            setComments(comments.filter(c => c.commentSeq  !== commentSeq));
+          console.log("댓글 삭제 성공");
+          setComments(comments.filter(c => c.commentSeq !== commentSeq));
         })
         .catch(error => console.error("댓글 삭제 실패:", error));
-  };
-
-// 파일 다운로드 함수
-const downloadFile = async () => {
-  const downloadUrl = `/mypage/download/${question.seq}`;
-
-  try {
-    const result = await axios.get(downloadUrl, { responseType: 'blob' });
-    const blob = new Blob([result.data], { type: result.headers['content-type'] });
-
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-
-    // 파일 이름과 확장자 설정
-    link.setAttribute("download", `${question.fileName}`);
-
-    // 파일 저장 다이얼로그 띄우기
-    link.click();
-  } catch (error) {
-    console.error("파일 다운로드 실패:", error);
+    } else {
+      console.log("현재 로그인한 사용자와 댓글 작성자의 이메일이 다릅니다.");
+    }
   }
 };
 
 
-return (
-  <PageContainer>
-  <MyPageSidebar />
-  <MainContent>  
-  <div className="qaform">
-    <span><img className="commentImage" src="/image/qna.png" alt="qna" /></span>
-    <div>
-      <strong className="qadetailTitle">{question.title}</strong><br />
-      <span className="QAsub">{question.nickName} 님</span> 
-      <span className="separator"></span>
-      <span className="QAsub">{question.AskDate}</span>
-      <span className="separator"></span>
-      <span>{question.fileName !== null && question.fileName !== 'null' && <button className="qnadetailB" onClick={downloadFile}>첨부파일 다운</button>}</span>
-    </div>
-    <p className="separatorwidth"></p>
-    <div>
-      <hr/>
-      <p className="qadetailContent">{question.content}</p>
-    </div>
-    <br/>
-    <p className="separatorwidth"></p>
-    <div>
-    <span style={{ display: "inline-block" }}><img className="commentImage" src="/image/comment.png" alt="comment" /></span>
-    <span style={{ display: "inline-block" }}><h2>댓글</h2></span>
-    </div>
-    <div>
-      <Textinput height={100} value={comment} onChange={handleCommentChange} placeholder="댓글을 작성하세요"/>
-      <button className="qnadetailB" onClick={submitComment}>등록</button>
-    </div>
-    <div>
-      <br/>
-      <div>
-        {comments.map((c, index) => (
-          <div className="comment" key={index}>
-            <strong>{c.content}</strong>
-            <br/>
-            <br/>
-            <span>{c.nickName}</span>
+  // 파일 다운로드 함수
+  const downloadFile = async () => {
+    const downloadUrl = `/mypage/download/${question.seq}`;
+
+    try {
+      const result = await axios.get(downloadUrl, { responseType: 'blob' });
+      const blob = new Blob([result.data], { type: result.headers['content-type'] });
+
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+
+      
+      // 파일 이름과 확장자 설정
+      link.setAttribute("download", `${question.fileName}`);
+      console.log(question.fileName);
+      // 파일 저장 다이얼로그 띄우기
+      link.click();
+    } catch (error) {
+      console.error("파일 다운로드 실패:", error);
+    }
+  };
+
+  return (
+    <PageContainer>
+      <MyPageSidebar />
+      <MainContent>  
+        <div className="qaform">
+          <span><img className="commentImage" src="/image/qna.png" alt="qna" /></span>
+          <div>
+            <strong className="qadetailTitle">{question.title}</strong><br />
+            <span className="QAsub">{question.nickName} 님</span> 
             <span className="separator"></span>
-            <span>{c.commentDate}</span>
+            <span className="QAsub">{question.AskDate}</span>
             <span className="separator"></span>
-            <button className="qnadetailB" onClick={() => deleteComment(c.commentSeq)}>삭제</button>
-            <hr/>
+            <span>{question.fileName !== null && <button className="qnadetailB" onClick={downloadFile}>첨부파일 다운</button>}</span>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-  </MainContent> 
-  </PageContainer>
-);
+          <p className="separatorwidth"></p>
+          <div>
+            <hr/>
+            <p className="qadetailContent">{question.content}</p>
+          </div>
+          <br/>
+          <p className="separatorwidth"></p>
+          <div>
+            <span style={{ display: "inline-block" }}><img className="commentImage" src="/image/comment.png" alt="comment" /></span>
+            <span style={{ display: "inline-block" }}><h2>댓글</h2></span>
+          </div>
+          <div>
+            <Textinput height={100} value={comment} onChange={handleCommentChange} placeholder="댓글을 작성하세요"/>
+            <button className="qnadetailB" onClick={submitComment}>등록</button>
+          </div>
+          <div>
+            <br/>
+            <div>
+              {comments.map((c, index) => (
+                <div className="comment" key={index}>
+                  <strong>{c.content}</strong>
+                  <br/>
+                  <br/>
+                  <span>{c.nickName}</span>
+                  <span className="separator"></span>
+                  <span>{c.commentDate}</span>
+                  <span className="separator"></span>
+                      { (currentUserEmail === "manager@ma.com" || currentUserEmail === c.email) && 
+                    <button className="qnadetailB" onClick={() => deleteComment(c.commentSeq, c.email)}>삭제</button>}
+                    <hr/>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </MainContent> 
+    </PageContainer>
+  );
 }
 
 function getSeq(location) {
@@ -172,3 +195,4 @@ function getSeq(location) {
 }
 
 export default QnAdetail;
+
