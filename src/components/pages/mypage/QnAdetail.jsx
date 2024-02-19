@@ -29,6 +29,7 @@ function QnAdetail() {
     content: '',
     fileName: '' 
   });
+  const [a , setA] = useState(false);
 
   // 댓글
   const [comments, setComments] = useState([]);
@@ -41,7 +42,7 @@ function QnAdetail() {
         setComments(res.data);
       })
       .catch(error => console.log(error));
-  }, [question.seq]);
+  }, [question.seq, a]);
 
   useEffect(() => {
     axios.get("/mypage/detail", {
@@ -72,6 +73,7 @@ function QnAdetail() {
       console.log("댓글 저장 성공");
       setComments([...comments, res.data]); // 새로운 댓글 추가
       setComment(""); // 댓글 입력값 초기화
+      setA((a) => !a)
     })
     .catch(error => console.error("댓글 저장 실패:", error));
   };

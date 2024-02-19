@@ -4,12 +4,15 @@ import DetailImage1 from "./detailImage1";
 
 const Container = styled.div`
     margin: auto;
-    display: inline-block;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 1024px;
     height: auto;
+    display: flex;
+    flex-direction: column;
 
     .titleContainer{
         border-bottom: 3px solid #ccc;
