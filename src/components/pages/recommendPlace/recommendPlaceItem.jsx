@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const RecommendPlaceItem = ({data, index}) => {
 
-    const { title, addr1, zipcode, contentid } = data;
+    const { title, addr1, contentid } = data;
 
 
     return (

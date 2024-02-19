@@ -11,16 +11,28 @@ const StyledFooter = styled.footer`
   //   display: block;
   // }
 
+  .imgBlock{
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-bottom: 2em;
+  }
+
   .imgP {
     display: inline;
+    text-alien: center;
     
     img {
-      padding-bottom: 81px;
+      text-alien: center;
     }
   }
 
   .gggginfo {
     padding-bottom: 29px;
+    text-alien: center;
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
   }
   
   .ppppP {
@@ -28,6 +40,7 @@ const StyledFooter = styled.footer`
     margin-top: 20px;
     padding-left: 135px;
     margin-left: 30px;
+    text-alien: center;
   }
 `;
 const StyledRow = styled.div`
@@ -39,7 +52,7 @@ const StyledRow = styled.div`
 function DemoFooter() {
   return (
     <StyledFooter className="footer footer-black footer-white">
-      <div className="imgBlock" style={{paddingLeft:"20%"}}>
+      <div className="imgBlock" >
         <p className="imgP"><img src="/image/footerlogo.png" alt="logo" style={{ maxWidth: '150px'}}/></p>
         <div className="ppppP">
         <p style={{ marginRight: "10px",fontWeight: "bold", color:"green",fontSize:"20px" }}>Into Korea</p>
@@ -48,8 +61,9 @@ function DemoFooter() {
         <p style={{ marginRight: "10px",fontSize:"15px" }}>사업자등록번호 : 000-00-00000</p>
         </div>
         <br/>
+      </div>
 
-        <span className="gggginfo" style={{ display: "flex", flexDirection: "row" }}>
+        <span className="gggginfo">
         <p style={{ marginRight: "10px" }}><a href="/#" style={{ fontWeight: "bold", color:"black",fontSize:"20px"}}>개인정보처리방침</a></p>
         <p style={{ marginRight: "10px" }}><a href="/#" style={{ fontWeight: "bold", color:"black",fontSize:"20px" }}>이용약관</a></p>
         <p style={{ marginRight: "10px" }}><a href="/#" style={{ fontWeight: "bold", color:"black",fontSize:"20px" }}>저작권정책</a></p>
@@ -57,7 +71,6 @@ function DemoFooter() {
         <p style={{ marginRight: "10px" }}><a href="/#" style={{ fontWeight: "bold", color:"black",fontSize:"20px" }}>전자우편무단수집거부</a></p>
         <p style={{ marginRight: "10px" }}><a href="/#" style={{ fontWeight: "bold", color:"black",fontSize:"20px" }}> Q&A </a></p>
         </span>
-      </div>
         <StyledRow>
           <nav className="footer-nav">
             <ul>
