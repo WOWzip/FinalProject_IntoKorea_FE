@@ -21,7 +21,6 @@ const StyledButton = styled.button`
 
 const BookmarkButton = ({onClick, isBookmarked}) => {
 
-    console.log("즐겨찾기 : " ,isBookmarked)
 
     // const buttonColor = isBookmarked ? "green" : "red" ;
 
