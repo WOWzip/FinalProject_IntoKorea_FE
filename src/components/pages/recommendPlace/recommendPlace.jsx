@@ -22,11 +22,12 @@ const RecommendPlace = () => {
                 //     setData(response.data.response.body.items.item);
                 //     console.log(response)
                 // }
-                if (response.data && response.data.response && response.data.response.body && response.data.response.body.items && response.data.response.body.items.item !== null) {
+                // if (response.data && response.data.response && response.data.response.body && response.data.response.body.items && response.data.response.body.items.item !== null) {
+                if (response !== null) {
                     setData(response.data.response.body.items.item);
                     console.log(response);
                 } else {
-                    console.error("API response does not contain expected data");
+                    console.log("API response does not contain expected data");
                 }
     
             }
@@ -50,7 +51,9 @@ const RecommendPlace = () => {
         <>
         {datas.map((data, index) => (
             <>
-            <RecommendPlaceItem key={data.firstimage || index } data={data} index={index}/>
+            {/* <RecommendPlaceItem key={data.firstimage || index } data={data} index={index}/> */}
+            <RecommendPlaceItem key={index} data={data} index={index}/>
+            
             </>
             ))}
         </>
