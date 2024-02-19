@@ -135,6 +135,7 @@ const SearchFestival1 = () => {
 
         setDetailAreaCode("");
         setAreaCode(data.code);
+        setPage(1);
 
         console.log("체크: ",data)
 
@@ -160,6 +161,7 @@ const SearchFestival1 = () => {
     
     const handleFilterDetailArea = (data) => {
         setDetailAreaCode(data.code)
+        setPage(1);
     }
 
     // 대기 중일때

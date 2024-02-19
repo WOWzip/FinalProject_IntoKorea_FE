@@ -75,6 +75,8 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  border-bottom: 0.5px solid gray;
+  width: 3em;
 }
 
 .diaryTitle {
@@ -85,7 +87,7 @@
   border-radius: 0;
   border-bottom: 3px solid black; 
   margin-bottom: 20px;
-  border-top: 0.5px solid gray;
+  /* border-top: 0.5px solid gray; */
   margin-top: 10px;
 }
 
@@ -98,6 +100,8 @@
   margin-bottom: 5px;
   margin-top: 20px;
   font-weight: bold;
+  border-bottom: 0.5px solid gray;
+  width: 3em;
 }
 
 .travelarea {
@@ -108,7 +112,7 @@
   border-radius: 0;
   border-bottom: 3px solid black;
   margin-bottom: 20px;
-  border-top: 0.5px solid gray;
+  /* border-top: 0.5px solid gray; */
   margin-top: 10px;
 }
 
@@ -120,6 +124,8 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  border-bottom: 0.5px solid gray;
+  width: 5em;
 }
 
 .diarylocationLabel {
@@ -127,6 +133,8 @@
   margin-bottom: 5px;
   font-weight: bold;
   margin-top: 40px;
+  border-bottom: 0.5px solid gray;
+  width: 3em;
 }
 
 .diaryupLabel{
@@ -134,6 +142,8 @@
   margin-bottom: 5px;
   font-weight: bold;
   margin-top: 40px;
+  border-bottom: 0.5px solid gray;
+  width: 8em;
 }
 
 .diaryimageLabel{
@@ -141,6 +151,8 @@
   margin-bottom: 5px;
   font-weight: bold;
   margin-top: 40px;
+  border-bottom: 0.5px solid gray;
+  width: 15em;
 }
 
 .diarythemeLabel{
@@ -148,6 +160,8 @@
   margin-bottom: 5px;
   font-weight: bold;
   margin-top: 20px;
+  border-bottom: 0.5px solid gray;
+  width: 3em;
 }
 
 .datearea {

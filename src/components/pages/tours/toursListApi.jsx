@@ -90,6 +90,7 @@ const PaginationBox = styled.div`
 `
 const SearchBarContainer = styled.div`
     margin-top: 20px;
+    z-index: 0;
 
     input {
         border: 1px solid gray;
