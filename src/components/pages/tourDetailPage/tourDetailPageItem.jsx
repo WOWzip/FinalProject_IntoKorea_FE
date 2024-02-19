@@ -9,16 +9,7 @@ const Container = styled.div`
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-
-    // width: auto;
-    // margin: auto;
-    // margin-top: 20px;
-    // padding: 20px;
-    // border: 1px solid #ccc;
-    // border-radius: 5px;
     height: auto;
-    // padding: auto;
-    // display: inline-block;
 
     .titleContainer{
         border-bottom: 3px solid #ccc;
@@ -49,7 +40,7 @@ const Container = styled.div`
         align-items: center; /* 수직 가운데 정렬 */
         
         img {
-            max-width: 100%;
+            max-width: 75%;
             height: auto;
             display: block;
             margin: 0 auto;

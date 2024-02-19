@@ -33,6 +33,8 @@ const ImageBox = styled.div`
     .button-prev {
         left: 10px; /* 왼쪽에 배치 */
         background-image: url(../image/sub/btn_photo_prev.png);
+        opacity: ${({ disabled }) => (disabled ? 0.5 : 1)}; /* 비활성화 시 투명도 조절 */
+        cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")}; /* 비활성화 시 커서 변경 */
     }
 
     .button-next {
