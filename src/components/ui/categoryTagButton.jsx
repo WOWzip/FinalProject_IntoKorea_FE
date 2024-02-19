@@ -10,7 +10,7 @@ const StyledButton = styled.button`
     border-bottom-right-radius: 35px;
     float: left;
     margin: 6px 5px 0 0;
-    background-color: ${({ active }) => (active ? "blue" : "white")}; // 활성화 상태에 따라 배경색 변경
+    background-color: ${({ active }) => (active ? "red" : "white")}; // 활성화 상태에 따라 배경색 변경
 `;
 
 const CategoryTagButton = ({data, onClick}) => {
@@ -36,3 +36,6 @@ const CategoryTagButton = ({data, onClick}) => {
 }
 
 export default CategoryTagButton;
+
+
+// -------------------------------------------------------------------

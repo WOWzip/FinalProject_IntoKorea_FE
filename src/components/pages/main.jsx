@@ -19,20 +19,29 @@ const MainContainer = styled.div`
 
     .content-center{
         margin-top: 0;
-        margin-bottom: 30em;
+        margin-bottom: 47em;
     }
 
     .searchBar {
-        margin-top: em;
-        margin-left: 10em;
+        margin-left: -4em;
         position: absolute;
         z-index: 2;
+        margin-bottom: 30em;
+        margin-right: 33em;
+
+        form {
+            width: 500px;
+        }
+        
+        input {
+            width: 470px;
+        }
     }
 
     .recommendBox {
-        margin-top: 26em;
-        margin-right: 30em;
-        width: 40em;
+        margin-top: 30em;
+        margin-right: -15em;
+        width: 63em;
         height: 50em;
         padding: 20px;
         border-radius: 10px;
@@ -113,7 +122,7 @@ const Main = () => {
                 backgroundImage: "url(" + require("assets/img/clouds.png") + ")",
             }}
             />
-            <h6 className="category category-absolute">
+            {/* <h6 className="category category-absolute">
             Designed and coded by{" "}
             <Link 
                 to ="https://www.creative-tim.com?ref=pkr-index-page"
@@ -125,7 +134,7 @@ const Main = () => {
                 src={require("assets/img/creative-tim-white-slim2.png")}
                 />
             </Link>
-                </h6>
+                </h6> */}
             <div className="searchBar">
         <SearchBar onSearch={handleSearch} /><br/>
             </div>
