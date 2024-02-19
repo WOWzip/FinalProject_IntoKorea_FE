@@ -31,6 +31,7 @@ const MyPage = () => {
                 </div>
                 <div className="keep-container box">
                     <form>
+
                         <button className="keepbutton">
                             <Link to="/BookMark" className="link">즐겨찾기</Link>
                         </button>
@@ -39,6 +40,7 @@ const MyPage = () => {
 
                 <div className="history-container box">
                     <form>
+
                         <button className="historybutton">
                             <Link to="/History" className="link">여행 일기</Link>
                         </button>
@@ -47,6 +49,7 @@ const MyPage = () => {
                 
                 <div className="qna-container box">
                     <form>
+
                         <button className="qnabutton">
                             <Link to="/QnA"  className="link">Q&A</Link>
                         </button>

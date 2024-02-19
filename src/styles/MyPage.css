@@ -82,6 +82,7 @@
     align-items: center; 
 }
 
+
 .keepbutton {
     background-color: #4caf50;
 }
@@ -100,7 +101,8 @@
     border: none;
     width:50%;
     height: 50px;
-    margin: auto;
+    margin-top: 420px;
+    margin-left: 65px;
     display: block;
     text-align: center;
     line-height: 50px;  

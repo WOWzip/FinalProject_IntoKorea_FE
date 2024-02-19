@@ -85,6 +85,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import '../../../styles/AskStyles.css';
 
 function EditQuestion() {
   const location = useLocation();
@@ -95,6 +96,7 @@ function EditQuestion() {
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const email = sessionStorage.getItem("email"); // 현재 로그인된 사용자의 이메일
+  const nickName = sessionStorage.getItem("nickName");
 
 
   useEffect(() => {
@@ -121,24 +123,26 @@ function EditQuestion() {
 
   const handleSubmit = () => {
     const formData = new FormData();
-    formData.append("seq",seq);
-    formData.append("file", file);
+    formData.append("file", file); // 파일 추가 부분 수정
+    formData.append("seq", seq);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("email", email); // 현재 로그인된 사용자의 이메일 추가
+    formData.append("nickName", nickName);
 
     axios.put(`/mypage/updateAsk`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
     })
-      .then((response) => {
+    .then((response) => {
         alert("수정이 완료되었습니다.")
         console.log("수정 성공:", response.data);
         navigate("/QnA");
-      })
-      .catch((error) => console.error("수정 실패:", error));
-  };
+    })
+    .catch((error) => console.error("수정 실패:", error));
+};
+
 
   return (
     <>
