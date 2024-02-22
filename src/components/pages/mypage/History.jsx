@@ -182,6 +182,7 @@ function History() {
     '여가' : "/image/culture.png"
   };
 
+  console.log(imagePaths)
 
   return (
     <PageContainer>
@@ -201,11 +202,13 @@ function History() {
         </div>
         ) : (
           <>
+          
 
 
 {currentItems.map((diary) => (
   <tr key={diary.seq} style={{width:"500px"}}>
     <td style={{paddingRight:"30px"}}> 
+      {/* <img src={imagePaths && imagePaths[diary.seq]} alt="다이어리 이미지" className="diaryImage" style={{width:"150px"}} /> */}
       <img src={imagePaths && imagePaths[diary.seq]} alt="다이어리 이미지" className="diaryImage" style={{width:"150px"}} />
     </td>
     <td style={{paddingBottom:"50px",paddingRight:"30px"}}>

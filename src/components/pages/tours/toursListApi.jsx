@@ -223,12 +223,14 @@ const ToursListApi = ({keyword}) => {
     const handleFilterCategory = (data) => {
         setSaveKeyWord("");
         setCategoryCode(data.code)
+        setContentsTypeId('')
         setFilter(data.name)
     }
 
     const handleFilterContentsTypeId = (data) => {
         setSaveKeyWord("");
         setContentsTypeId(data.code)
+        setCategoryCode('')
         setFilter(data.name)
     }
 
@@ -260,9 +262,6 @@ const ToursListApi = ({keyword}) => {
                     {showDetailAreaCode}
                     <div className="blockBox">
                     <CategoryCode onClick={handleFilterCategory}/>
-                    </div>
-                    <div className="blockBox">
-
                     <ContentsTypeId onClick={handleFilterContentsTypeId} />
                     </div>
                 </div>

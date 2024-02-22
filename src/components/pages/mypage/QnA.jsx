@@ -58,7 +58,7 @@ function QnA() {
       axios.get("/mypage/getAllAsks")
         .then((response) => {
           console.log("Server Response:", response.data);
-          const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+          const sortedQuestions = response.data.sort((a, b) => new Date(b.AskDate) - new Date(a.AskDate));
           setQuestions(sortedQuestions);
           setTotalItems(sortedQuestions.length);
         })
@@ -67,7 +67,7 @@ function QnA() {
       axios.get("/mypage/getAllAsks")
         .then((response) => {
           console.log("Server Response:", response.data);
-          const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+          const sortedQuestions = response.data.sort((a, b) => new Date(b.AskDate) - new Date(a.AskDate));
           const filteredQuestions = sortedQuestions.filter(question => question.email === email);
           setQuestions(filteredQuestions);
           setTotalItems(filteredQuestions.length);
@@ -88,7 +88,12 @@ function QnA() {
           setQuestions((prevQuestions) => prevQuestions.filter((question) => question.seq !== seq));
           setTotalItems(totalItems - 1);
         })
-        .catch((error) => console.error("삭제 에러:", error));
+        .catch((error) => {
+          console.error("삭제 에러:", error);
+          window.confirm("답변 완료된 것은 삭제가 안됩니다.");
+        })
+        
+
     }
   };
 
@@ -107,7 +112,7 @@ function QnA() {
         // 질문 목록 다시 불러오기
         axios.get("/mypage/getAllAsks")
           .then((response) => {
-            const sortedQuestions = response.data.sort((a, b) => a.seq - b.seq);
+            const sortedQuestions = response.data.sort((a, b) => new Date(b.AskDate) - new Date(a.AskDate));
             setQuestions(sortedQuestions);
             setTotalItems(sortedQuestions.length);
           })

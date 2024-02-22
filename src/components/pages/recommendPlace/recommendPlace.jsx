@@ -53,7 +53,6 @@ const RecommendPlace = () => {
             <>
             {/* <RecommendPlaceItem key={data.firstimage || index } data={data} index={index}/> */}
             <RecommendPlaceItem key={index} data={data} index={index}/>
-            
             </>
             ))}
         </>
