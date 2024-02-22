@@ -16,7 +16,7 @@ const CategoryCode = ( {onClick} ) => {
         {code: 'A04', name: '쇼핑', rnum: 4},
         {code: 'A05', name: '음식', rnum: 5},
         // {code: 'B02', name: '숙박', rnum: 6},
-        {code: 'C01', name: '추천코스', rnum: 7}
+        // {code: 'C01', name: '추천코스', rnum: 7}
     ]
 
     const handleChangeCategory = (sendCategory) => {

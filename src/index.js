@@ -107,8 +107,8 @@ root.render(
                 <Route path="/DiaryDetail" element={<DiaryDetail/>} />
                 
 
-                {/* <Route path='/ModifyPwd' element={<ModifyPwd/>}/>
-                <Route path='/ModifyNickName' element={<ModifyNickName/>}/> */}
+                <Route path='/ModifyPwd' element={<ModifyPwd/>}/>
+                <Route path='/ModifyNickName' element={<ModifyNickName/>}/>
 
               </>
               :
