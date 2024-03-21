@@ -43,7 +43,7 @@
 <img src="https://github.com/WOWzip/FinalProject_IntoKorea_FE/assets/142926896/6ea9d911-2af4-4503-a430-002ce70b0b5b" width="90%"/>
 <br/>
 
-#### 2. 계정 관리
+#### 2. ⭐계정 관리
 > 로그인
 <img src="https://github.com/WOWzip/FinalProject_IntoKorea_FE/assets/142926896/7a0cb42e-f6bd-41b7-9fb3-3588f4e20fc7" width="30%"/>
   
